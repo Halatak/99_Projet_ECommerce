@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html">
+
+<h:head>
+	<title></title>
+</h:head>
+
+<h:body id="corps">
+	
+	<h1 style="text-align: center;color: white">Site de E-Commerce</h1>
+	<h:form id="formulaire">
+		
+		<h:panelGrid columns="2">
+	Login: <h:inputText value="#{adminMB.administrateur.mail}" />
+	Mot de Passe: <h:inputSecret value="#{adminMB.administrateur.mdp}" />
+		</h:panelGrid>
+		<br/>
+		<h:commandButton value="Se Connecter" action="#{adminMB.seConnecter}" />
+		
+	</h:form>
+
+	<h1 style="color: red; text-align: center">
+		<h:messages />
+	</h1>
+
+</h:body>
+</html>
