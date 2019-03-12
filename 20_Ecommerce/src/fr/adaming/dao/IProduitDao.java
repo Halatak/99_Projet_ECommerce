@@ -1,5 +1,6 @@
 package fr.adaming.dao;
 
+import fr.adaming.model.Categorie;
 import fr.adaming.model.Produit;
 
 public interface IProduitDao {

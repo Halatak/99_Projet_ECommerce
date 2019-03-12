@@ -1,6 +1,6 @@
 package fr.adaming.service;
 
-import fr.adaming.dao.Categorie;
+import fr.adaming.model.Categorie;
 import fr.adaming.model.Produit;
 
 public interface IProduitService {

@@ -1,5 +1,6 @@
 package fr.adaming.service;
 
+import fr.adaming.model.Categorie;
 import fr.adaming.model.Produit;
 
 public class ProduitServiceImpl implements IProduitService {

@@ -1,17 +1,45 @@
 package fr.adaming.model;
 
+import java.io.Serializable;
+import java.util.List;
 
-public class Produit {
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
+import javax.persistence.ManyToOne;
+import javax.persistence.Table;
+
+@Entity
+@Table(name="produits")
+
+public class Produit implements Serializable {
 
 	//attributs
+	@Id
+	@GeneratedValue(strategy=GenerationType.IDENTITY)
+	@Column(name="id_prod")
 	private int idProduit;
+	
 	private String designation;
 	private String description;
 	private double prix;
 	private int quantite;
 	private boolean selectionne;
-	private byte photo;
+	private byte[] photo;
 	
+	//Association UML en JAVA
+	@ManyToOne
+	@JoinColumn(name="cat_id", referencedColumnName="id_cat")
+	private Categorie cat;
+	
+	@ManyToMany
+	@JoinTable(name="tab_assoc_prod_com", joinColumns=@JoinColumn(name="prod_id"),inverseJoinColumns = @JoinColumn(name="com_id"))
+	private List<Commande> listeCom;
 	
 	//constructeurs
 	public Produit() {
@@ -19,7 +47,7 @@ public class Produit {
 	}
 
 
-	public Produit(String designation, String description, double prix, int quantite, boolean selectionne, byte photo) {
+	public Produit(String designation, String description, double prix, int quantite, boolean selectionne, byte[] photo) {
 		super();
 		this.designation = designation;
 		this.description = description;
@@ -31,7 +59,7 @@ public class Produit {
 
 
 	public Produit(int idProduit, String designation, String description, double prix, int quantite,
-			boolean selectionne, byte photo) {
+			boolean selectionne, byte[] photo) {
 		super();
 		this.idProduit = idProduit;
 		this.designation = designation;
@@ -103,13 +131,33 @@ public class Produit {
 	}
 
 
-	public byte getPhoto() {
+	public byte[] getPhoto() {
 		return photo;
 	}
 
 
-	public void setPhoto(byte photo) {
+	public void setPhoto(byte[] photo) {
 		this.photo = photo;
+	}
+
+
+	public Categorie getCat() {
+		return cat;
+	}
+
+
+	public void setCat(Categorie cat) {
+		this.cat = cat;
+	}
+
+
+	public List<Commande> getListeCom() {
+		return listeCom;
+	}
+
+
+	public void setListeCom(List<Commande> listeCom) {
+		this.listeCom = listeCom;
 	}
 
 

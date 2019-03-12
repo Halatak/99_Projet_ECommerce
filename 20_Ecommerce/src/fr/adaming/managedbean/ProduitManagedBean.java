@@ -6,6 +6,7 @@ import javax.ejb.EJB;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.RequestScoped;
 
+import fr.adaming.model.Categorie;
 import fr.adaming.model.Produit;
 import fr.adaming.service.IProduitService;
 
@@ -40,19 +41,19 @@ public class ProduitManagedBean implements Serializable {
 
 	// Méthodes métier
 	public String ajouterProduit() {
-
+		return null;
 	}
 
 	public String supprimerProduit() {
-
+		return null;
 	}
 
 	public String modifierProduit() {
-
+		return null;
 	}
 
 	public String rechercherProduit() {
-
+		return null;
 	}
 
 }
