@@ -20,7 +20,7 @@ public class ProduitManagedBean implements Serializable {
 	private Categorie cat;
 
 	// Transformation de l'association UML en Java
-	@EJB
+
 	IProduitService sProd;
 
 	// Constructeur vide

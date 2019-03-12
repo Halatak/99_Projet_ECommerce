@@ -22,9 +22,7 @@ public class LigneCommande {
 	private int id;
 	private int quantite;
 	private int prix;
-	
-	//association uml en java
-	private Panier panier;
+
 	
 	@ManyToOne
 	@JoinColumn(name="prod_id", referencedColumnName="id_prod")
