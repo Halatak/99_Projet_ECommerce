@@ -9,7 +9,10 @@
 		<jta-data-source>java:/projet1</jta-data-source>
 
 		<!-- Enumérer les classes persistantes -->
-
+		<class>fr.adaming.model.Categorie</class>
+		<class>fr.adaming.model.Client</class>
+		<class>fr.adaming.model.Commande</class>
+		<class>fr.adaming.model.Produit</class>
 
 		<!-- Spécifier les propriétés Hibernate -->
 		<properties>
