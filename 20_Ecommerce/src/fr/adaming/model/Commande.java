@@ -14,6 +14,8 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 
 @Entity
 @Table(name="commandes")
@@ -24,6 +26,8 @@ public class Commande implements Serializable {
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	@Column(name="id_com")
 	private int idCommande;
+	
+	@Temporal(TemporalType.DATE)
 	private Date dateCommande;
 	
 	//association uml en java
