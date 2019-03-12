@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui">
+
+<h:head>
+	<title>Mon P'tit Cedric !</title>
+</h:head>
+
+<h:body>
+
+	<h:outputStylesheet library="css" name="MyStyle.css" />
+
+	<p:layout style="min-width:400px;min-height:200px;">
+		<p:layoutUnit position="west" resizable="false" size="243">
+			<h:form>
+				<p:menu toggleable="true">
+					<p:submenu label="Musique">
+						<p:menuitem value="Metal" url="catMetal" icon="fa fa-volume-up" />
+						<p:menuitem value="Rock" url="catRock" icon="fa fa-music" />
+					</p:submenu>
+					<p:submenu label="Tee-Shirt">
+						<p:menuitem value="Homme" url="catHommes"
+							icon="fa fa-th-list" />
+						<p:menuitem value="Femme" url="catFemmes"
+							icon="fa fa-plus" />
+					</p:submenu>
+				</p:menu>
+			</h:form>
+
+		</p:layoutUnit>
+
+		<p:layoutUnit position="center">
+
+			<h2 style="color: red; text-align: center; font-size: 60px">Informations</h2>
+
+<p style="font-size: 24px"> Suite à l'ouverture de notre site, nous sommes heureux de vous annoncer que des promotions sont effectives.
+Le pourcentage de réduction peut varier, donc tenez vous informés en consultant notre site tous les jours !
+Pour être sûrs de ne pas louper ces réductions, vous pourrez incessamment sous peu vous abonner à notre site ;
+vous recevrez ainsi par mail les réductions du jour.* </p> 
+
+<p style="font-size: 24px"> Vous pouvez naviguer sur notre site en sélectionnant une des catégories dans le menu de gauche. </p>
+
+<p style="font-size: 24px"> Nous rappelons que tous nos articles sont de qualité supérieure. </p>
+
+<p style="font-size: 8px"> * abonnement payant 80€/mois, engagement 100 ans, non résiliable. </p>
+			
+		</p:layoutUnit>
+	</p:layout>
+
+
+</h:body>
+</html>

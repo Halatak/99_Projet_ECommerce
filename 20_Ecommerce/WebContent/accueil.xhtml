@@ -10,21 +10,33 @@
 	<title>Accueil</title>
 </h:head>
 
-<h1 style="text-align: center; color: blue">Bienvenue sur le site
-	de e-commerce de Mon P'tit Cedric !</h1>
-
-<h:form>
-	<h:panelGrid columns="2">
-Vous êtes client ? <h:commandButton value="Acceder au site"
-			 action="#"/>
-		<br />
-Vous etes administrateur ? <h:commandButton value="Se connecter"
-			action="#" />
-		<br />
-	</h:panelGrid>
-</h:form>
-
 <h:body>
+
+	<h:outputStylesheet library="css" name="MyStyle.css" />
+
+
+	<h1 style="text-align: center; color: blue">Bienvenue sur le site
+		de e-commerce de Mon P'tit Cedric !</h1>
+
+	<h4 style="text-align: center; color: blue">Sur notre site, vous
+		trouverez de quoi être diablement swag !</h4>
+
+	<br />
+	<br />
+	<br />
+	<br />
+	<br />
+
+	<h:form>
+		<h:panelGrid columns="2" style="margin-left: 36%; text-align: center">
+Vous êtes client ? <h:commandButton value="Acceder au site"
+				action="site" style="height: 100px; width: 300px"/>
+			
+Vous etes administrateur ? <h:commandButton value="Se connecter"
+				action="#" style="height: 30px; width:300px"/>
+			<br />
+		</h:panelGrid>
+	</h:form>
 
 </h:body>
 </html>
