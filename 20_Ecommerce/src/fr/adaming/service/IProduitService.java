@@ -12,6 +12,5 @@ public interface IProduitService {
 	public int updateProduit(Produit prod, Categorie cat);
 	
 	public Produit getProduit(Produit prod, Categorie cat);
-	
-	
+		
 }
