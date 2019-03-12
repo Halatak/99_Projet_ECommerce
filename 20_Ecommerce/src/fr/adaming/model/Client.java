@@ -1,13 +1,32 @@
 package fr.adaming.model;
 
-public class Client {
+import java.io.Serializable;
+import java.util.List;
+
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.OneToMany;
+import javax.persistence.Table;
+@Entity
+@Table(name="clients")
+public class Client implements Serializable {
 
 	//attributs
+	@Id
+	@GeneratedValue(strategy=GenerationType.IDENTITY)
+	@Column(name="id_cl")
 	private int idClient;
 	private String nomClient;
 	private String adresse;
 	private String email;
 	private String tel;
+	
+	//association uml en java
+	@OneToMany(mappedBy="cl")
+	private List<Commande> listeCom;
 	
 	//constructeurs
 	public Client() {
@@ -81,6 +100,18 @@ public class Client {
 
 	public void setTel(String tel) {
 		this.tel = tel;
+	}
+
+
+	
+
+	public List<Commande> getListeCom() {
+		return listeCom;
+	}
+
+
+	public void setListeCom(List<Commande> listeCom) {
+		this.listeCom = listeCom;
 	}
 
 
