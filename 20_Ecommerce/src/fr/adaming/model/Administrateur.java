@@ -11,69 +11,67 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 
 @Entity
-@Table(name="administrateurs")
+@Table(name = "administrateurs")
 
 public class Administrateur implements Serializable {
 
 	// Déclaration des attributs
-		@Id
-		@GeneratedValue(strategy=GenerationType.IDENTITY)
-		@Column(name="id_admin")
-		private int id;
-		private String mail;
-		private String mdp;
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@Column(name = "id_admin")
+	private int id;
+	private String mail;
+	private String mdp;
 
-		// constructeurs
-		public Administrateur() {
-			super();
-		}
+	// constructeurs
+	public Administrateur() {
+		super();
+	}
 
-		public Administrateur(String mail, String mdp) {
-			super();
-			this.mail = mail;
-			this.mdp = mdp;
-		}
+	public Administrateur(String mail, String mdp) {
+		super();
+		this.mail = mail;
+		this.mdp = mdp;
+	}
 
-		public Administrateur(int id, String mail, String mdp) {
-			super();
-			this.id = id;
-			this.mail = mail;
-			this.mdp = mdp;
-		}
+	public Administrateur(int id, String mail, String mdp) {
+		super();
+		this.id = id;
+		this.mail = mail;
+		this.mdp = mdp;
+	}
 
-		// getters & setters
+	// getters & setters
 
-		public int getId() {
-			return id;
-		}
+	public int getId() {
+		return id;
+	}
 
-		public void setId(int id) {
-			this.id = id;
-		}
+	public void setId(int id) {
+		this.id = id;
+	}
 
-		public String getMail() {
-			return mail;
-		}
+	public String getMail() {
+		return mail;
+	}
 
-		public void setMail(String mail) {
-			this.mail = mail;
-		}
+	public void setMail(String mail) {
+		this.mail = mail;
+	}
 
-		public String getMdp() {
-			return mdp;
-		}
+	public String getMdp() {
+		return mdp;
+	}
 
-		public void setMdp(String mdp) {
-			this.mdp = mdp;
-		}
+	public void setMdp(String mdp) {
+		this.mdp = mdp;
+	}
 
+	// Méthodes
 
-		// Méthodes
+	@Override
+	public String toString() {
+		return "Administrateur [id=" + id + ", mail=" + mail + ", mdp=" + mdp + "]";
+	}
 
-		@Override
-		public String toString() {
-			return "Administrateur [id=" + id + ", mail=" + mail + ", mdp=" + mdp + "]";
-		}
-
-	
 }

@@ -1,5 +1,7 @@
 package fr.adaming.model;
 
+import java.util.List;
+
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -11,6 +13,7 @@ import javax.persistence.Table;
 
 @Entity
 @Table(name="lignecommandes")
+
 public class LigneCommande {
 
 	//attributs
@@ -22,6 +25,14 @@ public class LigneCommande {
 	
 	//association uml en java
 	private Panier panier;
+	
+	@ManyToOne
+	@JoinColumn(name="prod_id", referencedColumnName="id_prod")
+	private Produit prod;
+	
+	@ManyToOne
+	@JoinColumn(name="com_id", referencedColumnName="id_com")
+	private Commande com;
 	
 	//constructeurs
 	public LigneCommande() {

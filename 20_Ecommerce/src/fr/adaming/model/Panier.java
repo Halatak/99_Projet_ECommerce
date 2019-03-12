@@ -4,15 +4,15 @@ import java.util.List;
 
 public class Panier {
 
-	//association uml en java
+	// association uml en java
 	private List<LigneCommande> listeLc;
 
-	//constructeur vide
+	// constructeur vide
 	public Panier() {
 		super();
 	}
 
-	//getter et setter
+	// getter et setter
 	public List<LigneCommande> getListeLc() {
 		return listeLc;
 	}
@@ -20,6 +20,5 @@ public class Panier {
 	public void setListeLc(List<LigneCommande> listeLc) {
 		this.listeLc = listeLc;
 	}
-	
-	
+
 }

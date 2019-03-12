@@ -9,45 +9,43 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
-import javax.persistence.JoinTable;
-import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 @Entity
-@Table(name="produits")
+@Table(name = "produits")
 
 public class Produit implements Serializable {
 
-	//attributs
+	// attributs
 	@Id
-	@GeneratedValue(strategy=GenerationType.IDENTITY)
-	@Column(name="id_prod")
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@Column(name = "id_prod")
 	private int idProduit;
-	
+
 	private String designation;
 	private String description;
 	private double prix;
 	private int quantite;
 	private boolean selectionne;
 	private byte[] photo;
-	
-	//Association UML en JAVA
+
+	// Association UML en JAVA
 	@ManyToOne
-	@JoinColumn(name="cat_id", referencedColumnName="id_cat")
+	@JoinColumn(name = "cat_id", referencedColumnName = "id_cat")
 	private Categorie cat;
-	
-	@ManyToMany
-	@JoinTable(name="tab_assoc_prod_com", joinColumns=@JoinColumn(name="prod_id"),inverseJoinColumns = @JoinColumn(name="com_id"))
-	private List<Commande> listeCom;
-	
-	//constructeurs
+
+	@OneToMany(mappedBy = "prod")
+	private List<LigneCommande> listeLc;
+
+	// constructeurs
 	public Produit() {
 		super();
 	}
 
-
-	public Produit(String designation, String description, double prix, int quantite, boolean selectionne, byte[] photo) {
+	public Produit(String designation, String description, double prix, int quantite, boolean selectionne,
+			byte[] photo) {
 		super();
 		this.designation = designation;
 		this.description = description;
@@ -56,7 +54,6 @@ public class Produit implements Serializable {
 		this.selectionne = selectionne;
 		this.photo = photo;
 	}
-
 
 	public Produit(int idProduit, String designation, String description, double prix, int quantite,
 			boolean selectionne, byte[] photo) {
@@ -70,96 +67,78 @@ public class Produit implements Serializable {
 		this.photo = photo;
 	}
 
-	//getters et setters
+	// getters et setters
 	public int getIdProduit() {
 		return idProduit;
 	}
-
 
 	public void setIdProduit(int idProduit) {
 		this.idProduit = idProduit;
 	}
 
-
 	public String getDesignation() {
 		return designation;
 	}
-
 
 	public void setDesignation(String designation) {
 		this.designation = designation;
 	}
 
-
 	public String getDescription() {
 		return description;
 	}
-
 
 	public void setDescription(String description) {
 		this.description = description;
 	}
 
-
 	public double getPrix() {
 		return prix;
 	}
-
 
 	public void setPrix(double prix) {
 		this.prix = prix;
 	}
 
-
 	public int getQuantite() {
 		return quantite;
 	}
-
 
 	public void setQuantite(int quantite) {
 		this.quantite = quantite;
 	}
 
-
 	public boolean isSelectionne() {
 		return selectionne;
 	}
-
 
 	public void setSelectionne(boolean selectionne) {
 		this.selectionne = selectionne;
 	}
 
-
 	public byte[] getPhoto() {
 		return photo;
 	}
-
 
 	public void setPhoto(byte[] photo) {
 		this.photo = photo;
 	}
 
-
 	public Categorie getCat() {
 		return cat;
 	}
-
 
 	public void setCat(Categorie cat) {
 		this.cat = cat;
 	}
 
-
-	public List<Commande> getListeCom() {
-		return listeCom;
+	public List<LigneCommande> getListeLc() {
+		return listeLc;
 	}
 
-
-	public void setListeCom(List<Commande> listeCom) {
-		this.listeCom = listeCom;
+	public void setListeLc(List<LigneCommande> listeLc) {
+		this.listeLc = listeLc;
 	}
-
 
 	@Override
 	public String toString() {
@@ -167,6 +146,5 @@ public class Produit implements Serializable {
 				+ ", prix=" + prix + ", quantite=" + quantite + ", selectionne=" + selectionne + ", photo=" + photo
 				+ "]";
 	}
-	
 
 }
