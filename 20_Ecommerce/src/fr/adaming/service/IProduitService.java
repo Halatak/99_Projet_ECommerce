@@ -1,8 +1,9 @@
-package fr.adaming.dao;
+package fr.adaming.service;
 
+import fr.adaming.dao.Categorie;
 import fr.adaming.model.Produit;
 
-public interface IProduitDao {
+public interface IProduitService {
 
 	public int addProduit(Produit prod, Categorie cat);
 	
@@ -11,5 +12,6 @@ public interface IProduitDao {
 	public int updateProduit(Produit prod, Categorie cat);
 	
 	public Produit getProduit(Produit prod, Categorie cat);
+	
 	
 }
