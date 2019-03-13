@@ -5,20 +5,18 @@
 	xmlns:f="http://java.sun.com/jsf/core"
 	xmlns:p="http://primefaces.org/ui">
 <h:head>
-<title>Accueil admin</title>
+	<title>Accueil admin</title>
 </h:head>
 <h:body>
 
-	<p:layout style="min-width:400px;min-height:200px;">
-		<p:layoutUnit position="west" resizable="false" size="243">
+	<p:layout style="min-width:400px;min-height:200px;height: 730px">
+		<p:layoutUnit position="west" resizable="false" size="200">
 
 			<h:form>
 				<h:commandButton value="Ajouter un produit" action="ajoutProduit" />
 				<h:commandButton value="Supprimer un produit" action="supprProduit" />
 				<h:commandButton value="Modifier un produit" action="modifProduit" />
 			</h:form>
-
-
 
 			<br />
 
@@ -57,7 +55,8 @@
 					</p:column>
 
 					<p:column headerText="Opérations">
-						<p:commandLink value="Supprimer" action="#{catMB.supprimerCategorie}"
+						<p:commandLink value="Supprimer"
+							action="#{catMB.supprimerCategorie}"
 							styleClass="ui-priority-primary" update="idTab1">
 							<f:setPropertyActionListener value="#{cat.idCategorie}"
 								target="#{catMB.cat.idCategorie}"></f:setPropertyActionListener>
