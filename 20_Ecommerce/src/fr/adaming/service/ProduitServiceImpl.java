@@ -18,7 +18,7 @@ public class ProduitServiceImpl implements IProduitService {
 	@Override
 	public Produit addProduit(Produit prod, Categorie cat) {
 		//lier les objets en java
-		prod.setCat(cat);;
+		prod.setCat(cat);
 		return prodDao.addProduit(prod);
 	}
 

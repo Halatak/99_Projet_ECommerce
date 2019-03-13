@@ -4,10 +4,10 @@
 	xmlns:h="http://java.sun.com/jsf/html"
 	xmlns:f="http://java.sun.com/jsf/core"
 	xmlns:p="http://primefaces.org/ui">
-<head>
+<h:head>
 <title>Ajouter un produit</title>
-</head>
-<body>
+</h:head>
+<h:body>
 	<h1 style="color: red; text-align: center">Formulaire d'ajout</h1>
 	<h:form>
 		<h:panelGrid columns="2">
@@ -22,6 +22,7 @@
 	ID Categorie: <h:inputText value="#{prodMB.prod.cat.idCategorie}" />
 			<br />
 
+
 			<h:commandButton value="Ajouter" action="#{prodMB.ajouterProduit}" />
 		</h:panelGrid>
 	</h:form>
@@ -29,5 +30,5 @@
 	<h1 style="color: red; text-align: center">
 		<h:messages />
 	</h1>
-</body>
+</h:body>
 </html>

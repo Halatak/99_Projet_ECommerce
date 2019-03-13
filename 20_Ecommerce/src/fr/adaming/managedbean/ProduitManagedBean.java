@@ -34,6 +34,7 @@ public class ProduitManagedBean implements Serializable {
 
 	public ProduitManagedBean() {
 		this.prod = new Produit();
+		this.cat=new Categorie();
 	}
 
 	// Getters & setters
@@ -51,7 +52,7 @@ public class ProduitManagedBean implements Serializable {
 		Produit prodAjout=prodService.addProduit(prod, cat);
 		if(prodAjout!=null){
 			List<Produit> liste=prodService.getAllProduits();
-			
+			maSession.setAttribute("listeProdSession",liste);
 			
 			return "accueilAdmin";
 		}else{
@@ -66,7 +67,7 @@ public class ProduitManagedBean implements Serializable {
 		if(verif!=0){
 			//recuperer la nouvelle liste
 			List<Produit> liste=prodService.getAllProduits();
-			
+			maSession.setAttribute("listeProdSession",liste);
 			
 			return "accueilAdmin";
 		}else{
@@ -80,6 +81,7 @@ public class ProduitManagedBean implements Serializable {
 		if(verif!=0){
 			//recuperer la nouvelle liste
 			List<Produit> liste=prodService.getAllProduits();
+			maSession.setAttribute("listeProdSession",liste);
 			
 			return "accueilAdmin";
 		}else{
