@@ -4,6 +4,7 @@ import java.io.Serializable;
 import java.util.List;
 
 import javax.persistence.Column;
+import javax.persistence.Embedded;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -21,9 +22,12 @@ public class Client implements Serializable {
 	@Column(name = "id_cl")
 	private int idClient;
 	private String nomClient;
-	private String adresse;
 	private String email;
 	private String tel;
+	
+	//Lier l'adresse au client
+	@Embedded
+	private Adresse adresse; //Il ne faudra pas oublier de SET l'adresse au client dans le DAO !
 
 	// association uml en java
 	@OneToMany(mappedBy = "cl")
@@ -34,7 +38,7 @@ public class Client implements Serializable {
 		super();
 	}
 
-	public Client(String nomClient, String adresse, String email, String tel) {
+	public Client(String nomClient, Adresse adresse, String email, String tel) {
 		super();
 		this.nomClient = nomClient;
 		this.adresse = adresse;
@@ -42,7 +46,7 @@ public class Client implements Serializable {
 		this.tel = tel;
 	}
 
-	public Client(int idClient, String nomClient, String adresse, String email, String tel) {
+	public Client(int idClient, String nomClient, Adresse adresse, String email, String tel) {
 		super();
 		this.idClient = idClient;
 		this.nomClient = nomClient;
@@ -68,11 +72,11 @@ public class Client implements Serializable {
 		this.nomClient = nomClient;
 	}
 
-	public String getAdresse() {
+	public Adresse getAdresse() {
 		return adresse;
 	}
 
-	public void setAdresse(String adresse) {
+	public void setAdresse(Adresse adresse) {
 		this.adresse = adresse;
 	}
 

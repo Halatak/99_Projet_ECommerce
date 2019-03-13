@@ -11,7 +11,7 @@ import fr.adaming.model.Produit;
 
 public class ProduitDaoImpl implements IProduitDao {
 
-	@PersistenceContext(unitName="PU_EC")		//cette annotation permet d'injecter un em instancié par le conteneur ejb
+	@PersistenceContext(unitName="PU_EC") //cette annotation permet d'injecter un em instanciï¿½ par le conteneur ejb
 	private EntityManager em;
 	
 	@Override
