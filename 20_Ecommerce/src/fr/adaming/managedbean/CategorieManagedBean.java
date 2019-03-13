@@ -53,7 +53,10 @@ public class CategorieManagedBean implements Serializable {
 
 	public String ajouterCategorie() {
 
+		
+		System.out.println(this.image);
 		if(this.image != null) {
+			
 			this.cat.setPhoto(this.image.getContents());
 		}
 			

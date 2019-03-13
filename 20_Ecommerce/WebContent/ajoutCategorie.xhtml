@@ -21,13 +21,13 @@
 	<h1 style="color: red; text-align: center">Formulaire d'ajout de
 		categorie</h1>
 		
-	<h:form entype="multipart/form-data">
+	<h:form enctype="multipart/form-data">
 		<h:panelGrid columns="2">
-	Nom de la catégorie : <h:inputText value="#{catMB.cat.nomCategorie}" />
+			Nom de la catégorie : <h:inputText value="#{catMB.cat.nomCategorie}" />
 			<br />
-	Description : <h:inputText value="#{catMB.cat.description}" />
+			Description : <h:inputText value="#{catMB.cat.description}" />
 			<br />
-	Photo : <p:fileUpload value="#{catMB.image}" mode="simple"
+			Photo : <p:fileUpload value="#{catMB.image}" mode="simple"
 				skinSimple="true" />
 			<br />
 
