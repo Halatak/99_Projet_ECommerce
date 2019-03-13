@@ -1,0 +1,15 @@
+@charset "ISO-8859-1";
+
+#accueilPanelGrid {
+	margin-left: 700 px;
+}
+
+#boutonAccueilClient {
+	height: 100px;
+	width: 300px;
+	color: black;
+}
+
+#boutonAccueilAdmin {
+	
+}
