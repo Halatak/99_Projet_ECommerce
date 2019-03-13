@@ -1,8 +1,5 @@
 @charset "ISO-8859-1";
 
-#accueilPanelGrid {
-	margin-left: 700 px;
-}
 
 #boutonAccueilClient {
 	height: 100px;
@@ -14,6 +11,9 @@
 	
 }
 
-#fondSite {
-	background-color: rgba(255, 255, 255, 0.2);
+#corps{
+	background-image:
+		url("../resources/pictures/fond ecran metal2.jpg");
+	background-size: cover;
 }
+

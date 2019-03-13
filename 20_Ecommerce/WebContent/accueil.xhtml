@@ -8,19 +8,22 @@
 
 <h:head>
 	<title>Accueil</title>
+	
+<link href='https://fonts.googleapis.com/css?family=Hanalei Fill' rel='stylesheet'/>
 </h:head>
 
-<h:body>
+<h:body id="corps">
 
 	<h:outputStylesheet library="css" name="MyStyle.css" />
 
+<div id="texte" style="font-family: 'Hanalei Fill'; font-size: 26px">
+			<h1 style="text-align: center; color: red ">Bienvenue		sur		le		site  
+				de   e-commerce   de   Mon   P'tit   Cedric   !</h1>
 
-	<h1 style="text-align: center; color: blue">Bienvenue sur le site
-		de e-commerce de Mon P'tit Cedric !</h1>
-
-	<h4 style="text-align: center; color: blue">Sur notre site, vous
-		trouverez de quoi être diablement swag !</h4>
-
+			<h4 style="text-align: center; color: red">Sur		notre		site,		vous  
+				trouverez		de		quoi		être		diablement		<span style="font-size: 45px">rock !</span>	</h4>
+</div>
+	<br />
 	<br />
 	<br />
 	<br />
@@ -28,12 +31,12 @@
 	<br />
 
 	<h:form>
-		<h:panelGrid columns="2" style="margin-left: 36%; text-align: center">
-Vous êtes client ? <h:commandButton value="Acceder au site"
-				action="site" style="height: 100px; width: 300px"/>
+		<h:panelGrid columns="1" style="margin-left: 40%; text-align: center">
+<h:commandButton value="Acceder au site"
+				action="site" style="height: 100px; width: 300px" />
 			
-Vous etes administrateur ? <h:commandButton value="Se connecter"
-				action="loginAdmin" style="height: 30px; width:300px"/>
+<h:commandButton value="Acces Administrateur"
+				action="loginAdmin" style="height: 30px; width:300px" />
 			<br />
 		</h:panelGrid>
 	</h:form>
