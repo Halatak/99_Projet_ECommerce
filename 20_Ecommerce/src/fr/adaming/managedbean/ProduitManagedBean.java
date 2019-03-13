@@ -76,7 +76,16 @@ public class ProduitManagedBean implements Serializable {
 	}
 
 	public String modifierProduit() {
-		return null;
+		int verif=prodService.updateProduit(prod, cat);
+		if(verif!=0){
+			//recuperer la nouvelle liste
+			List<Produit> liste=prodService.getAllProduits();
+			
+			return "accueilAdmin";
+		}else{
+			FacesContext.getCurrentInstance().addMessage(null, new FacesMessage("la suppression a échoué"));
+			return "modifProduit";
+		}
 	}
 
 	public String rechercherProduit() {

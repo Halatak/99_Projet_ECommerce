@@ -43,8 +43,7 @@ public class ProduitServiceImpl implements IProduitService {
 
 	@Override
 	public List<Produit> getAllProduits() {
-		// TODO Auto-generated method stub
-		return null;
+		return prodDao.getAllProduits();
 	}
 
 	@Override

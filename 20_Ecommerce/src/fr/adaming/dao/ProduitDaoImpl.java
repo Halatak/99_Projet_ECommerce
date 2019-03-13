@@ -58,8 +58,13 @@ public class ProduitDaoImpl implements IProduitDao {
 
 	@Override
 	public List<Produit> getAllProduits() {
-		// TODO Auto-generated method stub
-		return null;
+		// construire la requete jsql
+		String req="SELECT prod FROM Produit as prod";
+						
+		//recuperer un objet de type query
+		Query queryListe=em.createQuery(req);
+
+		return queryListe.getResultList();
 	}
 
 	@Override

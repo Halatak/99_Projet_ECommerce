@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui">
+	
+<head>
+
+<title>Insert title here</title>
+</head>
+<body>
+
+<h1 style="color: red; text-align: center">Formulaire de modification</h1>
+	<h:form>
+		<h:panelGrid columns="2">
+	ID: <h:inputText value="#{prodMB.prod.idProduit}" />
+			<br />
+	Designation: <h:inputText value="#{prodMB.prod.designation}" />
+			<br />
+	Description: <h:inputText value="#{prodMB.prod.description}" />
+			<br />
+	ID Categorie: <h:inputText value="#{prodMB.prod.cat.idCategorie}" />
+			<br />
+	Prix: <h:inputText value="#{prodMB.prod.prix}" />
+			<br />
+	Quantité: <h:inputText value="#{prodMB.prod.quantite}" />
+			<br />
+	Photo: <h:inputText value="#{prodMB.prod.photo}" />
+			<br />
+			<h:commandButton value="Modifier" action="#{prodMB.modifierProduit}" />
+		</h:panelGrid>
+	</h:form>
+
+	<h1 style="color: red; text-align: center">
+		<h:messages />
+	</h1>
+	
+</body>
+</html>
