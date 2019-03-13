@@ -17,23 +17,23 @@
 	<p:layout style="min-width:400px;min-height:200px;">
 		<p:layoutUnit position="west" resizable="false" size="243">
 			<h:form>
-				<p:menu toggleable="true">
-					<p:submenu label="Musique">
-						<p:menuitem value="Metal" url="catMetal" icon="fa fa-volume-up" />
-						<p:menuitem value="Rock" url="catRock" icon="fa fa-music" />
+				<p:menu toggleable="true" style="background-color: black">
+					<p:submenu label="Musique" style="background-color: red">
+						<p:menuitem value="Metal" url="catMetal" icon="fa fa-volume-up" style="color: red"/>
+						<p:menuitem value="Rock" url="catRock" icon="fa fa-music" style="color: red"/>
 					</p:submenu>
-					<p:submenu label="Tee-Shirt">
+					<p:submenu label="Tee-Shirt" style="background-color: red">
 						<p:menuitem value="Homme" url="catHommes"
-							icon="fa fa-th-list" />
+							icon="fa fa-th-list" style="color: red"/>
 						<p:menuitem value="Femme" url="catFemmes"
-							icon="fa fa-plus" />
+							icon="fa fa-plus" style="color: red"/>
 					</p:submenu>
 				</p:menu>
 			</h:form>
 
 		</p:layoutUnit>
 
-		<p:layoutUnit position="center">
+		<p:layoutUnit position="center" id="fondSite">
 
 			<h2 style="color: red; text-align: center; font-size: 60px">Informations</h2>
 
