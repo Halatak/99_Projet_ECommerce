@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui">
+	
+<h:head>
+<title>Mon P'tit Cedric !</title>
+</h:head>
+
+<h:body>
+
+<h1 style="color: red; text-align: center">Formulaire de suppression de categorie</h1>
+	<h:form>
+		<h:panelGrid columns="2">
+	ID Catégorie : <h:inputText value="#{prodMB.prod.designation}" />
+			<br />
+
+			<h:commandButton value="Ajouter" action="#{prodMB.ajouterProduit}" />
+		</h:panelGrid>
+	</h:form>
+
+	<h5 style="color: red; text-align: center">
+		<h:messages />
+	</h5>
+
+</h:body>
+</html>
