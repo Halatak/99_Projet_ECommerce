@@ -1,11 +1,13 @@
 package fr.adaming.dao;
 
+import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
 
 import fr.adaming.model.Categorie;
 
+@Stateless
 public class CategorieDaoImpl implements ICategorieDao {
 
 	@PersistenceContext(unitName="PU_EC")

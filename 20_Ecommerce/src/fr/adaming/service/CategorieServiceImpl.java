@@ -1,10 +1,13 @@
 package fr.adaming.service;
 
 import javax.ejb.EJB;
+import javax.ejb.Stateful;
+import javax.ejb.Stateless;
 
 import fr.adaming.dao.ICategorieDao;
 import fr.adaming.model.Categorie;
 
+@Stateful
 public class CategorieServiceImpl implements ICategorieService {
 
 	//Transformation de l'association UML en Java

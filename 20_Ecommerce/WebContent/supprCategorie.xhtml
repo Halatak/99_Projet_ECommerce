@@ -15,10 +15,10 @@
 <h1 style="color: red; text-align: center">Formulaire de suppression de categorie</h1>
 	<h:form>
 		<h:panelGrid columns="2">
-	ID Catégorie : <h:inputText value="#{prodMB.prod.designation}" />
+	ID Catégorie : <h:inputText value="#{catMB.cat.idCategorie}" />
 			<br />
 
-			<h:commandButton value="Ajouter" action="#{prodMB.ajouterProduit}" />
+			<h:commandButton value="Supprimer" action="#{catMB.supprimerCategorie}" />
 		</h:panelGrid>
 	</h:form>
 

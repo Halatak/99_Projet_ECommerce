@@ -15,14 +15,14 @@
 <h1 style="color: red; text-align: center">Formulaire de modification de categorie</h1>
 	<h:form>
 		<h:panelGrid columns="2">
-	Nom de la catégorie : <h:inputText value="#{prodMB.prod.designation}" />
+	Nom de la catégorie : <h:inputText value="#{catMB.cat.nomCategorie}" />
 			<br />
-	Description : <h:inputText value="#{prodMB.prod.description}" />
+	Description : <h:inputText value="#{catMB.cat.description}" />
 			<br />
-	Photo : <h:inputText value="#{prodMB.prod.prix}" />
+	Photo : <h:inputText value="#{catMB.cat.photo}" />
 			<br />
 
-			<h:commandButton value="Modifier" action="#{prodMB.ajouterProduit}" />
+			<h:commandButton value="Modifier" action="#{catMB.modifierCategorie}" />
 		</h:panelGrid>
 	</h:form>
 
