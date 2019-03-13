@@ -9,6 +9,8 @@ import javax.faces.bean.ManagedBean;
 import javax.faces.bean.RequestScoped;
 import javax.faces.context.FacesContext;
 
+import org.primefaces.model.UploadedFile;
+
 import fr.adaming.model.Categorie;
 import fr.adaming.service.ICategorieService;
 
@@ -19,6 +21,7 @@ public class CategorieManagedBean implements Serializable {
 
 	// Déclaration des attributs
 	private Categorie cat;
+	private UploadedFile image;
 
 	// transformation de l'association UML en JAVA
 	@EJB
@@ -37,11 +40,23 @@ public class CategorieManagedBean implements Serializable {
 	public void setCat(Categorie cat) {
 		this.cat = cat;
 	}
+	
+	public UploadedFile getImage() {
+		return image;
+	}
+
+	public void setImage(UploadedFile image) {
+		this.image = image;
+	}
 
 	// Déclaration des méthodes métiers
 
 	public String ajouterCategorie() {
 
+		if(this.image != null) {
+			this.cat.setPhoto(this.image.getContents());
+		}
+			
 		Categorie catIn = catService.addCategorie(cat);
 
 		if (catIn != null) {

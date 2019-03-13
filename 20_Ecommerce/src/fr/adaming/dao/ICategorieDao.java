@@ -15,4 +15,6 @@ public interface ICategorieDao {
 	
 	public List<Categorie> getAllCategorie();
 	
+	public Categorie getCategorieById(Categorie cat);
+	
 }

@@ -8,8 +8,10 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.Lob;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
+import javax.persistence.Transient;
 
 @Entity
 @Table(name = "categories")
@@ -23,8 +25,13 @@ public class Categorie implements Serializable {
 	private int idCategorie;
 
 	private String nomCategorie;
-	private byte[] photo;
 	private String description;
+	
+	@Lob
+	private byte[] photo;
+	
+	@Transient
+	private String img;
 
 	// Transformation de l'association UML en JAVA
 	@OneToMany(mappedBy = "cat")
@@ -89,6 +96,14 @@ public class Categorie implements Serializable {
 
 	public void setListeProd(List<Produit> listeProd) {
 		this.listeProd = listeProd;
+	}
+
+	public String getImg() {
+		return img;
+	}
+
+	public void setImg(String img) {
+		this.img = img;
 	}
 
 	@Override
