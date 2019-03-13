@@ -22,7 +22,7 @@ public class CategorieManagedBean implements Serializable {
 	// Déclaration des attributs
 	private Categorie cat;
 	private UploadedFile image;
-
+	
 	// transformation de l'association UML en JAVA
 	@EJB
 	private ICategorieService catService;

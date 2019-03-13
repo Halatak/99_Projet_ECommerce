@@ -61,7 +61,7 @@ public class CategorieDaoImpl implements ICategorieDao {
 
 		// boucle pour récupérer les pixels de l'image
 		for (Categorie c : listeCat) {
-			c.setImg("data:image/png;base64," + Base64.encodeBase64String(c.getPhoto()));
+			c.setImg("data:image/png;base64,"+Base64.encodeBase64String(c.getPhoto()));
 		}
 
 		return listeCat;
@@ -80,6 +80,7 @@ public class CategorieDaoImpl implements ICategorieDao {
 		query.setParameter("cId", cat.getIdCategorie());
 		
 		Categorie catOut = (Categorie) query.getSingleResult();
+		catOut.setImg("data:image/png;base64," + Base64.encodeBase64String(catOut.getPhoto()));
 
 		return catOut;
 	}
