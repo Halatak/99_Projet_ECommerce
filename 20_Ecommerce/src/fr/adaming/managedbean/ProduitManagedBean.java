@@ -1,10 +1,14 @@
 package fr.adaming.managedbean;
 
 import java.io.Serializable;
+import java.util.List;
 
 import javax.ejb.EJB;
+import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.RequestScoped;
+import javax.faces.context.FacesContext;
+import javax.servlet.http.HttpSession;
 
 import fr.adaming.model.Categorie;
 import fr.adaming.model.Produit;
@@ -20,8 +24,11 @@ public class ProduitManagedBean implements Serializable {
 	private Categorie cat;
 
 	// Transformation de l'association UML en Java
-
-	IProduitService sProd;
+	@EJB
+	IProduitService prodService;
+	
+	
+	private HttpSession maSession;
 
 	// Constructeur vide
 
@@ -41,11 +48,31 @@ public class ProduitManagedBean implements Serializable {
 
 	// Méthodes métier
 	public String ajouterProduit() {
-		return null;
+		Produit prodAjout=prodService.addProduit(prod, cat);
+		if(prodAjout!=null){
+			List<Produit> liste=prodService.getAllProduits();
+			maSession.setAttribute("adminSession", liste);
+			
+			return "accueilAdmin";
+		}else{
+			FacesContext.getCurrentInstance().addMessage(null, new FacesMessage("l'ajout a échoué"));
+			return "ajoutProduit";
+		}
+		
 	}
 
 	public String supprimerProduit() {
-		return null;
+		int verif=prodService.deleteProduit(prod, cat);
+		if(verif!=0){
+			//recuperer la nouvelle liste
+			List<Produit> liste=prodService.getAllProduits();
+			maSession.setAttribute("adminSession", liste);
+			
+			return "accueilAdmin";
+		}else{
+			FacesContext.getCurrentInstance().addMessage(null, new FacesMessage("la suppression a échoué"));
+			return "supprProduit";
+		}
 	}
 
 	public String modifierProduit() {

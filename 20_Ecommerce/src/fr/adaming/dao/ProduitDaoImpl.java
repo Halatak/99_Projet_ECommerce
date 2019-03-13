@@ -2,13 +2,14 @@ package fr.adaming.dao;
 
 import java.util.List;
 
+import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
 
 import fr.adaming.model.Categorie;
 import fr.adaming.model.Produit;
-
+@Stateless
 public class ProduitDaoImpl implements IProduitDao {
 
 	@PersistenceContext(unitName="PU_EC") //cette annotation permet d'injecter un em instanci� par le conteneur ejb
