@@ -1,6 +1,7 @@
 package fr.adaming.managedbean;
 
 import java.io.Serializable;
+import java.util.List;
 
 import javax.ejb.EJB;
 import javax.faces.application.FacesMessage;
@@ -40,24 +41,35 @@ public class CategorieManagedBean implements Serializable {
 	// Déclaration des méthodes métiers
 
 	public String ajouterCategorie() {
-		
+
 		Categorie catIn = catService.addCategorie(cat);
-		
-		if (catIn != null){
+
+		if (catIn != null) {
+			// r�cup�rer la nouvelle liste
+			List<Categorie> listeCat = catService.getAllCategorie();
+
+			// mettre la liste dans la session
+			FacesContext.getCurrentInstance().getExternalContext().getSessionMap().put("listeCatSession", listeCat);
+
 			return "accueilAdmin";
 		} else {
-			FacesContext.getCurrentInstance().addMessage(null,
-					new FacesMessage("Echec de l'ajout de la catégorie"));
+			FacesContext.getCurrentInstance().addMessage(null, new FacesMessage("Echec de l'ajout de la catégorie"));
 
 			return "ajoutCategorie";
 		}
 	}
-	
+
 	public String supprimerCategorie() {
-		
+
 		int verifSupprimer = catService.deleteCategorie(cat);
-		
+
 		if (verifSupprimer != 0) {
+			// r�cup�rer la nouvelle liste
+			List<Categorie> listeCat = catService.getAllCategorie();
+
+			// mettre la liste dans la session
+			FacesContext.getCurrentInstance().getExternalContext().getSessionMap().put("listeCatSession", listeCat);
+			
 			return "accueilAdmin";
 		} else {
 			FacesContext.getCurrentInstance().addMessage(null,
@@ -66,20 +78,26 @@ public class CategorieManagedBean implements Serializable {
 			return "supprCategorie";
 		}
 	}
-	
+
 	public String modifierCategorie() {
-		
+
 		int verifModifier = catService.updateCategorie(cat);
-		
-		if (verifModifier != 0 ){
+
+		if (verifModifier != 0) {
+			// r�cup�rer la nouvelle liste
+			List<Categorie> listeCat = catService.getAllCategorie();
+
+			// mettre la liste dans la session
+			FacesContext.getCurrentInstance().getExternalContext().getSessionMap().put("listeCatSession", listeCat);
+			
 			return "accueilAdmin";
 		} else {
 			FacesContext.getCurrentInstance().addMessage(null,
 					new FacesMessage("Echec de la modification de la catégorie"));
 
 			return "modifCategorie";
-		
+
 		}
 	}
-	
+
 }
