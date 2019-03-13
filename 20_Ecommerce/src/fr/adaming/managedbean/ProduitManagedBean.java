@@ -3,6 +3,7 @@ package fr.adaming.managedbean;
 import java.io.Serializable;
 import java.util.List;
 
+import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
 import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
@@ -10,6 +11,7 @@ import javax.faces.bean.RequestScoped;
 import javax.faces.context.FacesContext;
 import javax.servlet.http.HttpSession;
 
+import fr.adaming.model.Administrateur;
 import fr.adaming.model.Categorie;
 import fr.adaming.model.Produit;
 import fr.adaming.service.IProduitService;
@@ -22,19 +24,27 @@ public class ProduitManagedBean implements Serializable {
 	// Déclaration des attributs
 	private Produit prod;
 	private Categorie cat;
+	private Administrateur admin;
 
 	// Transformation de l'association UML en Java
 	@EJB
 	IProduitService prodService;
-	
-	
+
 	private HttpSession maSession;
 
 	// Constructeur vide
 
 	public ProduitManagedBean() {
 		this.prod = new Produit();
-		this.cat=new Categorie();
+		this.cat = new Categorie();
+
+	}
+
+	@PostConstruct // cette annotation sert a dire que la methode doit etre
+					// executé apres l'instanciation de l'objet
+	public void init() {
+		maSession = (HttpSession) FacesContext.getCurrentInstance().getExternalContext().getSession(false);
+		this.admin = (Administrateur) maSession.getAttribute("adminSession");
 	}
 
 	// Getters & setters
@@ -47,44 +57,52 @@ public class ProduitManagedBean implements Serializable {
 		this.prod = prod;
 	}
 
+	public Categorie getCat() {
+		return cat;
+	}
+
+	public void setCat(Categorie cat) {
+		this.cat = cat;
+	}
+
 	// Méthodes métier
 	public String ajouterProduit() {
-		Produit prodAjout=prodService.addProduit(prod, cat);
-		if(prodAjout!=null){
-			List<Produit> liste=prodService.getAllProduits();
-			maSession.setAttribute("listeProdSession",liste);
-			
+		Produit prodAjout = prodService.addProduit(prod, cat);
+		if (prodAjout != null) {
+			List<Produit> listeProd = prodService.getAllProduits();
+			maSession.setAttribute("listeProdSession", listeProd);
+
 			return "accueilAdmin";
-		}else{
+		} else {
 			FacesContext.getCurrentInstance().addMessage(null, new FacesMessage("l'ajout a échoué"));
 			return "ajoutProduit";
 		}
-		
+
 	}
 
 	public String supprimerProduit() {
-		int verif=prodService.deleteProduit(prod, cat);
-		if(verif!=0){
-			//recuperer la nouvelle liste
-			List<Produit> liste=prodService.getAllProduits();
-			maSession.setAttribute("listeProdSession",liste);
-			
+		int verif = prodService.deleteProduit(prod, cat);
+		if (verif != 0) {
+			// recuperer la nouvelle liste
+			List<Produit> liste = prodService.getAllProduits();
+			maSession.setAttribute("listeProdSession", liste);
+
 			return "accueilAdmin";
-		}else{
+		} else {
 			FacesContext.getCurrentInstance().addMessage(null, new FacesMessage("la suppression a échoué"));
 			return "supprProduit";
 		}
 	}
 
 	public String modifierProduit() {
-		int verif=prodService.updateProduit(prod, cat);
-		if(verif!=0){
-			//recuperer la nouvelle liste
-			List<Produit> liste=prodService.getAllProduits();
-			maSession.setAttribute("listeProdSession",liste);
-			
+		int verif = prodService.updateProduit(prod, cat);
+		if (verif != 0) {
+			// recuperer la nouvelle liste
+			List<Produit> liste = prodService.getAllProduits();
+			maSession.setAttribute("listeProdSession", liste);
+
 			return "accueilAdmin";
-		}else{
+		} else {
 			FacesContext.getCurrentInstance().addMessage(null, new FacesMessage("la suppression a échoué"));
 			return "modifProduit";
 		}

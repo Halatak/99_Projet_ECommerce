@@ -5,11 +5,11 @@
 	xmlns:f="http://java.sun.com/jsf/core"
 	xmlns:p="http://primefaces.org/ui">
 	
-<head>
+<h:head>
 
 <title>Insert title here</title>
-</head>
-<body>
+</h:head>
+<h:body>
 
 <h1 style="color: red; text-align: center">Formulaire de modification</h1>
 	<h:form>
@@ -20,7 +20,7 @@
 			<br />
 	Description: <h:inputText value="#{prodMB.prod.description}" />
 			<br />
-	ID Categorie: <h:inputText value="#{prodMB.prod.cat.idCategorie}" />
+	ID Categorie: <h:inputText value="#{prodMB.cat.idCategorie}" />
 			<br />
 	Prix: <h:inputText value="#{prodMB.prod.prix}" />
 			<br />
@@ -36,5 +36,5 @@
 		<h:messages />
 	</h1>
 	
-</body>
+</h:body>
 </html>

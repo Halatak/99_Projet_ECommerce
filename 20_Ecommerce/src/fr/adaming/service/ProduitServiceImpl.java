@@ -5,6 +5,7 @@ import java.util.List;
 import javax.ejb.EJB;
 import javax.ejb.Stateful;
 
+import fr.adaming.dao.ICategorieDao;
 import fr.adaming.dao.IProduitDao;
 import fr.adaming.model.Categorie;
 import fr.adaming.model.Produit;
@@ -14,10 +15,15 @@ public class ProduitServiceImpl implements IProduitService {
 	//transformation uml java
 	@EJB
 	private IProduitDao prodDao;
+	
+	@EJB
+	private ICategorieDao catDao;
 		
 	@Override
 	public Produit addProduit(Produit prod, Categorie cat) {
 		//lier les objets en java
+		
+		cat=catDao.getCategorieById(cat);
 		prod.setCat(cat);
 		return prodDao.addProduit(prod);
 	}
@@ -25,13 +31,14 @@ public class ProduitServiceImpl implements IProduitService {
 	@Override
 	public int deleteProduit(Produit prod, Categorie cat) {
 		//lier les objets en java
-		prod.setCat(cat);;
+		prod.setCat(cat);
 		return prodDao.deleteProduit(prod);
 	}
 
 	@Override
 	public int updateProduit(Produit prod, Categorie cat) {
-		prod.setCat(cat);;
+		cat=catDao.getCategorieById(cat);
+		prod.setCat(cat);
 		return prodDao.updateProduit(prod);
 	}
 

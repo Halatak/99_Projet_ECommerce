@@ -29,6 +29,8 @@ public class AdministrateurManagedBean implements Serializable {
 	@EJB
 	private ICategorieService catService;
 
+	
+	
 	// D�claration des attributs
 	private Administrateur admin;
 
