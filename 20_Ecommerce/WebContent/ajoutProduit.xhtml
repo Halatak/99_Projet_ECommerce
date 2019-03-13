@@ -5,11 +5,11 @@
 	xmlns:f="http://java.sun.com/jsf/core"
 	xmlns:p="http://primefaces.org/ui">
 <h:head>
-<title>Ajouter un produit</title>
+	<title>Ajouter un produit</title>
 </h:head>
 <h:body>
 	<h1 style="color: red; text-align: center">Formulaire d'ajout</h1>
-	<h:form>
+	<h:form enctype="multipart/form-data">
 		<h:panelGrid columns="2">
 	Designation: <h:inputText value="#{prodMB.prod.designation}" />
 			<br />
@@ -18,6 +18,8 @@
 	Prix: <h:inputText value="#{prodMB.prod.prix}" />
 			<br />
 	Quantité: <h:inputText value="#{prodMB.prod.quantite}" />
+			<br />
+	Photo: <p:fileUpload value="#{prodMB.image}" mode="simple" skinSimple="true"/>
 			<br />
 	ID Categorie: <h:inputText value="#{prodMB.cat.idCategorie}" />
 			<br />

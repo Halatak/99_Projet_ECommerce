@@ -11,6 +11,8 @@ import javax.faces.bean.RequestScoped;
 import javax.faces.context.FacesContext;
 import javax.servlet.http.HttpSession;
 
+import org.primefaces.model.UploadedFile;
+
 import fr.adaming.model.Administrateur;
 import fr.adaming.model.Categorie;
 import fr.adaming.model.Produit;
@@ -21,10 +23,12 @@ import fr.adaming.service.IProduitService;
 
 public class ProduitManagedBean implements Serializable {
 
-	// Déclaration des attributs
+	// Dï¿½claration des attributs
 	private Produit prod;
 	private Categorie cat;
 	private Administrateur admin;
+	
+	private UploadedFile image;
 
 	// Transformation de l'association UML en Java
 	@EJB
@@ -41,7 +45,7 @@ public class ProduitManagedBean implements Serializable {
 	}
 
 	@PostConstruct // cette annotation sert a dire que la methode doit etre
-					// executé apres l'instanciation de l'objet
+					// executï¿½ apres l'instanciation de l'objet
 	public void init() {
 		maSession = (HttpSession) FacesContext.getCurrentInstance().getExternalContext().getSession(false);
 		this.admin = (Administrateur) maSession.getAttribute("adminSession");
@@ -65,8 +69,21 @@ public class ProduitManagedBean implements Serializable {
 		this.cat = cat;
 	}
 
-	// Méthodes métier
+	public UploadedFile getImage() {
+		return image;
+	}
+
+	public void setImage(UploadedFile image) {
+		this.image = image;
+	}
+
+	// Mï¿½thodes mï¿½tier
 	public String ajouterProduit() {
+		
+		if(this.image != null){
+			this.prod.setPhoto(this.image.getContents());
+		}		
+		
 		Produit prodAjout = prodService.addProduit(prod, cat);
 		if (prodAjout != null) {
 			List<Produit> listeProd = prodService.getAllProduits();
@@ -74,7 +91,7 @@ public class ProduitManagedBean implements Serializable {
 
 			return "accueilAdmin";
 		} else {
-			FacesContext.getCurrentInstance().addMessage(null, new FacesMessage("l'ajout a échoué"));
+			FacesContext.getCurrentInstance().addMessage(null, new FacesMessage("l'ajout a ï¿½chouï¿½"));
 			return "ajoutProduit";
 		}
 
@@ -89,7 +106,7 @@ public class ProduitManagedBean implements Serializable {
 
 			return "accueilAdmin";
 		} else {
-			FacesContext.getCurrentInstance().addMessage(null, new FacesMessage("la suppression a échoué"));
+			FacesContext.getCurrentInstance().addMessage(null, new FacesMessage("la suppression a ï¿½chouï¿½"));
 			return "supprProduit";
 		}
 	}
@@ -103,7 +120,7 @@ public class ProduitManagedBean implements Serializable {
 
 			return "accueilAdmin";
 		} else {
-			FacesContext.getCurrentInstance().addMessage(null, new FacesMessage("la suppression a échoué"));
+			FacesContext.getCurrentInstance().addMessage(null, new FacesMessage("la suppression a ï¿½chouï¿½"));
 			return "modifProduit";
 		}
 	}
