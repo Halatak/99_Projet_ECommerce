@@ -1,5 +1,7 @@
 package fr.adaming.service;
 
+import java.util.List;
+
 import javax.ejb.Local;
 
 import fr.adaming.model.Categorie;
@@ -13,4 +15,6 @@ public interface ICategorieService {
 
 	public int updateCategorie(Categorie cat);
 
+	public List<Categorie> getAllCategorie();
+	
 }

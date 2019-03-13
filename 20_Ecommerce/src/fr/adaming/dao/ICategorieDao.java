@@ -1,5 +1,7 @@
 package fr.adaming.dao;
-import javax.ejb.Local;
+import java.util.List;
+
+import javax.ejb.Local;
 import fr.adaming.model.Categorie;
 
 @Local
@@ -11,5 +13,6 @@ public interface ICategorieDao {
 	
 	public int updateCategorie(Categorie cat);
 	
+	public List<Categorie> getAllCategorie();
 	
 }
