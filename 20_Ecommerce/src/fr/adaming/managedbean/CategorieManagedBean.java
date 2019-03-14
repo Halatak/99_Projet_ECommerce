@@ -127,6 +127,6 @@ public class CategorieManagedBean implements Serializable {
 		}
 	}
 	
-	 
+	
 
 }
