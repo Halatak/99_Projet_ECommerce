@@ -57,6 +57,8 @@ public class CategorieManagedBean implements Serializable {
 	public void setImage(UploadedFile image) {
 		this.image = image;
 	}
+	
+	
 
 	@PostConstruct // cette annotation sert � dire que la m�thode doit �tre
 	// ex�cut�e apr�s l'instanciation de l'objet
