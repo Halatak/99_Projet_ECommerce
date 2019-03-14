@@ -91,4 +91,23 @@ public class ProduitDaoImpl implements IProduitDao {
 		return listeProdByCat;
 	}
 
+	@Override
+	public List<Produit> getProdByIdCat(Categorie cat) {
+		// construire la requete jsql
+		String req="SELECT prod FROM Produit as prod WHERE prod.cat.id=:pIdCat";
+		//recuperer un objet de type query
+		Query queryListe=em.createQuery(req);
+		
+		//passage des parametres
+		queryListe.setParameter("pIdCat", cat.getIdCategorie());
+				
+		List<Produit> listeProdByCat = queryListe.getResultList();
+				
+		for (Produit p:listeProdByCat){
+					p.setImg("data:image/png;base64,"+Base64.encodeBase64String(p.getPhoto()));
+		}
+		return listeProdByCat;
+			
+		}
+
 }

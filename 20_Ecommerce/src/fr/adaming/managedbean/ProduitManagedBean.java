@@ -136,4 +136,14 @@ public class ProduitManagedBean implements Serializable {
 		}
 	}
 
+	public String rechercherProdByIdCat() {
+		List<Produit> listeProdByCat=prodService.getProdByIdCat(cat);
+		if (listeProdByCat != null) {
+
+			return "catMetal";
+		} else {
+			FacesContext.getCurrentInstance().addMessage(null, new FacesMessage("la recherche a echoue"));
+			return "site";
+		}
+	}
 }

@@ -59,4 +59,10 @@ public class ProduitServiceImpl implements IProduitService {
 		return prodDao.getProdByCat(catFind);
 	}
 
+	@Override
+	public List<Produit> getProdByIdCat(Categorie cat) {
+		Categorie catFind= catDao.getCategorieById(cat);
+		return prodDao.getProdByIdCat(catFind);
+	}
+
 }
