@@ -58,20 +58,6 @@ public class CategorieManagedBean implements Serializable {
 		this.image = image;
 	}
 	
-	
-
-	@PostConstruct // cette annotation sert � dire que la m�thode doit �tre
-	// ex�cut�e apr�s l'instanciation de l'objet
-	public void init() {
-		cat1.setIdCategorie(1);
-		cat2.setIdCategorie(2);
-		cat3.setIdCategorie(3);
-		cat4.setIdCategorie(4);
-		List<Produit> listeProdMetal = prodService.getProdByCat(cat1);
-		List<Produit> listeProdRock = prodService.getProdByCat(cat2);
-		List<Produit> listeProdHomme = prodService.getProdByCat(cat3);
-		List<Produit> listeProdFemme = prodService.getProdByCat(cat4);
-	}
 
 	// Déclaration des méthodes métiers
 
@@ -140,5 +126,7 @@ public class CategorieManagedBean implements Serializable {
 
 		}
 	}
+	
+	 
 
 }
