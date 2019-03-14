@@ -20,7 +20,7 @@ public interface IProduitDao {
 	
 	public List<Produit> getAllProduits();
 	
-	public List<Produit> getProdByCat(Produit prod);
+	public List<Produit> getProdByCat(Categorie cat);
 	
 	
 }

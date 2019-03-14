@@ -9,6 +9,7 @@ import javax.persistence.Query;
 
 import org.apache.commons.codec.binary.Base64;
 
+import fr.adaming.model.Categorie;
 import fr.adaming.model.Produit;
 @Stateless
 public class ProduitDaoImpl implements IProduitDao {
@@ -75,7 +76,7 @@ public class ProduitDaoImpl implements IProduitDao {
 	}
 
 	@Override
-	public List<Produit> getProdByCat(Produit prod) {
+	public List<Produit> getProdByCat(Categorie cat) {
 		
 		// construire la requete jsql
 		String req="SELECT prod FROM Produit as prod WHERE prod.cat.id=:pIdCat";

@@ -126,7 +126,7 @@ public class ProduitManagedBean implements Serializable {
 	}
 
 	public String rechercherProdByCat() {
-		List<Produit> listeProdByCat=prodService.getProdByCat(prod, cat);
+		List<Produit> listeProdByCat=prodService.getProdByCat(cat);
 		if (listeProdByCat != null) {
 
 			return "rechercheCat";

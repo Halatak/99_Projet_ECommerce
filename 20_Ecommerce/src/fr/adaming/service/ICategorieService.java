@@ -17,4 +17,6 @@ public interface ICategorieService {
 
 	public List<Categorie> getAllCategorie();
 	
+	public Categorie getCategorieById(Categorie cat);
+	
 }
