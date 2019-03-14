@@ -27,6 +27,7 @@ public class ProduitManagedBean implements Serializable {
 	private Produit prod;
 	private Categorie cat;
 	private Administrateur admin;
+	private List<Produit> listeProdByCat;
 	
 	private UploadedFile image;
 
@@ -75,6 +76,14 @@ public class ProduitManagedBean implements Serializable {
 
 	public void setImage(UploadedFile image) {
 		this.image = image;
+	}
+
+	public List<Produit> getListeProdByCat() {
+		return listeProdByCat;
+	}
+
+	public void setListeProdByCat(List<Produit> listeProdByCat) {
+		this.listeProdByCat = listeProdByCat;
 	}
 
 	// M�thodes m�tier
@@ -139,8 +148,7 @@ public class ProduitManagedBean implements Serializable {
 	public String rechercherProdByIdCat() {
 		List<Produit> listeProdByCat=prodService.getProdByIdCat(cat);
 		if (listeProdByCat != null) {
-
-			return "catMetal";
+			return "site";
 		} else {
 			FacesContext.getCurrentInstance().addMessage(null, new FacesMessage("la recherche a echoue"));
 			return "site";
