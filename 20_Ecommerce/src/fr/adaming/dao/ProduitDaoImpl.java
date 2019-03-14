@@ -9,7 +9,6 @@ import javax.persistence.Query;
 
 import org.apache.commons.codec.binary.Base64;
 
-import fr.adaming.model.Categorie;
 import fr.adaming.model.Produit;
 @Stateless
 public class ProduitDaoImpl implements IProduitDao {
@@ -76,9 +75,19 @@ public class ProduitDaoImpl implements IProduitDao {
 	}
 
 	@Override
-	public List<Produit> getProdByCat(Categorie cat) {
-		// TODO Auto-generated method stub
-		return null;
+	public List<Produit> getProdByCat(Produit prod) {
+		
+		// construire la requete jsql
+		String req="SELECT prod FROM Produit as prod WHERE prod.cat.id=:pIdCat";
+		//recuperer un objet de type query
+		Query queryListe=em.createQuery(req);
+		
+		List<Produit> listeProdByCat = queryListe.getResultList();
+		
+		for (Produit p:listeProdByCat){
+			p.setImg("data:image/png;base64,"+Base64.encodeBase64String(p.getPhoto()));
+		}
+		return listeProdByCat;
 	}
 
 }

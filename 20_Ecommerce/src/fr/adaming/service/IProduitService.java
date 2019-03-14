@@ -20,5 +20,5 @@ public interface IProduitService {
 		
 	public List<Produit> getAllProduits();
 	
-	public List<Produit> getProdByCat(Categorie cat);
+	public List<Produit> getProdByCat(Produit prod, Categorie cat);
 }

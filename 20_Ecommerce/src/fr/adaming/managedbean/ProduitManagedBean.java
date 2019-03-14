@@ -125,8 +125,15 @@ public class ProduitManagedBean implements Serializable {
 		}
 	}
 
-	public String rechercherProduit() {
-		return null;
+	public String rechercherProdByCat() {
+		List<Produit> listeProdByCat=prodService.getProdByCat(prod, cat);
+		if (listeProdByCat != null) {
+
+			return "rechercheCat";
+		} else {
+			FacesContext.getCurrentInstance().addMessage(null, new FacesMessage("la recherche a echoue"));
+			return "site";
+		}
 	}
 
 }
