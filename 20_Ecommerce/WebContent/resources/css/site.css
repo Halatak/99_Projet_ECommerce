@@ -1,0 +1,15 @@
+@CHARSET "ISO-8859-1";
+
+.fontNoir .ui-layout-unit-content {
+	background-color: black;
+}
+
+#corps{
+	background-color: black;
+}
+
+#texte{
+	margin-left: 15px;
+	margin-right: 15px;
+	text-align: justify;
+}

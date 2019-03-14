@@ -10,12 +10,12 @@
 	<title>Mon P'tit Cedric !</title>
 </h:head>
 
-<h:body>
+<h:body id="corps">
 
-	<h:outputStylesheet library="css" name="MyStyle.css" />
+	<h:outputStylesheet library="css" name="site.css" />
 
 	<p:layout style="min-width:400px;min-height:200px; height: 730px">
-		<p:layoutUnit position="west" resizable="false" size="200">
+		<p:layoutUnit styleClass="fontNoir" position="west" resizable="false" size="200">
 			<h:form>
 				<p:menu toggleable="true" style="background-color: black">
 					<p:submenu label="Musique" style="background-color: red">
@@ -33,21 +33,21 @@
 
 		</p:layoutUnit>
 
-		<p:layoutUnit position="center" id="fondSite">
+		<p:layoutUnit styleClass="fontNoir" position="center">
 
 			<h2 style="color: red; text-align: center; font-size: 60px">Informations</h2>
-
-<p style="font-size: 24px"> Suite à l'ouverture de notre site, nous sommes heureux de vous annoncer que des promotions sont effectives.
+<div id="texte" style="color: white;" >
+<p style="font-size: 24px;"> Suite à l'ouverture de notre site, nous sommes heureux de vous annoncer que des promotions sont effectives.
 Le pourcentage de réduction peut varier, donc tenez vous informés en consultant notre site tous les jours !
 Pour être sûrs de ne pas louper ces réductions, vous pourrez incessamment sous peu vous abonner à notre site ;
 vous recevrez ainsi par mail les réductions du jour.* </p> 
 
-<p style="font-size: 24px"> Vous pouvez naviguer sur notre site en sélectionnant une des catégories dans le menu de gauche. </p>
+<p style="font-size: 24px;"> Vous pouvez naviguer sur notre site en sélectionnant une des catégories dans le menu de gauche. </p>
 
-<p style="font-size: 24px"> Nous rappelons que tous nos articles sont de qualité supérieure. </p>
+<p style="font-size: 24px;"> Nous rappelons que tous nos articles sont de qualité supérieure. </p>
 
-<p style="font-size: 8px"> * abonnement payant 80€/mois, engagement 100 ans, non résiliable. </p>
-			
+<p style="font-size: 8px;"> * abonnement payant 80€/mois, engagement 100 ans, non résiliable. </p>
+	</div>		
 		</p:layoutUnit>
 	</p:layout>
 
