@@ -65,6 +65,9 @@
           <p:commandLink value="Modifier" action="modifCategorie">
 							<f:setPropertyActionListener value="#{cat}" target="#{catMB.cat}"></f:setPropertyActionListener>
 						</p:commandLink>
+						<p:commandLink value="Envoyer fiche produit"
+							action="#{prodMB.envoieMail}"
+							styleClass="ui-priority-primary"/>
 					</p:column>
 
 				</p:dataTable>
@@ -105,7 +108,8 @@
 
 
 					<p:column headerText="Opérations">
-						<p:commandLink value="Supprimer" action="#{prodMB.supprimerProduit}"
+						<p:commandLink value="Supprimer"
+							action="#{prodMB.supprimerProduit}"
 							styleClass="ui-priority-primary" update="idTab2">
 							<f:setPropertyActionListener value="#{prod.idProduit}"
 								target="#{prodMB.prod.idProduit}"></f:setPropertyActionListener>

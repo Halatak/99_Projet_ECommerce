@@ -16,6 +16,9 @@ import org.primefaces.model.UploadedFile;
 import fr.adaming.model.Administrateur;
 import fr.adaming.model.Categorie;
 import fr.adaming.model.Produit;
+import fr.adaming.model.SendMailSSL;
+import fr.adaming.service.AdministrateurServiceImpl;
+import fr.adaming.service.IAdministrateurService;
 import fr.adaming.service.IProduitService;
 
 @ManagedBean(name = "prodMB")
@@ -28,7 +31,8 @@ public class ProduitManagedBean implements Serializable {
 	private Categorie cat;
 	private Administrateur admin;
 	private List<Produit> listeProdByCat;
-	
+	private String messageMail;
+
 	private UploadedFile image;
 
 	// Transformation de l'association UML en Java
@@ -86,13 +90,21 @@ public class ProduitManagedBean implements Serializable {
 		this.listeProdByCat = listeProdByCat;
 	}
 
+	public String getMessageMail() {
+		return messageMail;
+	}
+
+	public void setMessageMail(String messageMail) {
+		this.messageMail = messageMail;
+	}
+
 	// Mï¿½thodes mï¿½tier
 	public String ajouterProduit() {
-		
-		if(this.image != null){
+
+		if (this.image != null) {
 			this.prod.setPhoto(this.image.getContents());
-		}		
-		
+		}
+
 		Produit prodAjout = prodService.addProduit(prod, cat);
 		if (prodAjout != null) {
 			List<Produit> listeProd = prodService.getAllProduits();
@@ -135,7 +147,7 @@ public class ProduitManagedBean implements Serializable {
 	}
 
 	public String rechercherProdByCat() {
-		List<Produit> listeProdByCat=prodService.getProdByCat(cat);
+		List<Produit> listeProdByCat = prodService.getProdByCat(cat);
 		if (listeProdByCat != null) {
 
 			return "rechercheCat";
@@ -146,12 +158,35 @@ public class ProduitManagedBean implements Serializable {
 	}
 
 	public String rechercherProdByIdCat() {
-		List<Produit> listeProdByCat=prodService.getProdByIdCat(cat);
+		List<Produit> listeProdByCat = prodService.getProdByIdCat(cat);
 		if (listeProdByCat != null) {
 			return "site";
 		} else {
 			FacesContext.getCurrentInstance().addMessage(null, new FacesMessage("la recherche a echoue"));
 			return "site";
+		}
+	}
+
+	public String envoieMail() {
+
+		IAdministrateurService adminService = new AdministrateurServiceImpl();
+		Administrateur adminOut = adminService.isExist(admin);
+
+		messageMail = "Bonjour," + this.prod.getQuantite() + "exemplaire de " + this.prod.getDesignation()
+				+ " ont été ajouté au stock. Veuillez trouvez ci-joint la fiche produit.";
+
+		int verifMail = 0;
+		SendMailSSL sm = new SendMailSSL();
+		try {
+			verifMail = sm.sendMail(adminOut.getMail(), messageMail);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		if (verifMail != 0) {
+			return "accueilAdmin";
+		} else {
+			FacesContext.getCurrentInstance().addMessage(null, new FacesMessage("envoie échoué"));
+			return "accueilAdmin";
 		}
 	}
 }
