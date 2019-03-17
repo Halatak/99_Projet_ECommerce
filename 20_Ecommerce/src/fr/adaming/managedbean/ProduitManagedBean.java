@@ -170,22 +170,21 @@ public class ProduitManagedBean implements Serializable {
 	public String envoieMail() {
 
 		IAdministrateurService adminService = new AdministrateurServiceImpl();
-		Administrateur adminOut = adminService.isExist(admin);
 
-		messageMail = "Bonjour," + this.prod.getQuantite() + "exemplaire de " + this.prod.getDesignation()
-				+ " ont été ajouté au stock. Veuillez trouvez ci-joint la fiche produit.";
+		messageMail = "Bonjour," + this.prod.getQuantite() + "exemplaire(s) de " + this.prod.getDesignation()
+				+ " ont ï¿½tï¿½ ajoutï¿½ au stock. Veuillez trouvez ci-joint la fiche produit.";
 
 		int verifMail = 0;
 		SendMailSSL sm = new SendMailSSL();
 		try {
-			verifMail = sm.sendMail(adminOut.getMail(), messageMail);
+			verifMail = sm.sendMail("cangi@laposte.net", "test");
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
 		if (verifMail != 0) {
 			return "accueilAdmin";
 		} else {
-			FacesContext.getCurrentInstance().addMessage(null, new FacesMessage("envoie échoué"));
+			FacesContext.getCurrentInstance().addMessage(null, new FacesMessage("envoie ï¿½chouï¿½"));
 			return "accueilAdmin";
 		}
 	}
