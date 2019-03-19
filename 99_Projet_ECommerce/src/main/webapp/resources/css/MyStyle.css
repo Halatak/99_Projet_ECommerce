@@ -1,0 +1,19 @@
+@charset "ISO-8859-1";
+
+
+#boutonAccueilClient {
+	height: 100px;
+	width: 300px;
+	color: black;
+}
+
+#boutonAccueilAdmin {
+	
+}
+
+#corps{
+	background-image:
+		url("../resources/pictures/fond ecran metal2.jpg");
+	background-size: cover;
+}
+
