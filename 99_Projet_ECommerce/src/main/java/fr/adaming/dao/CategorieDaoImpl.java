@@ -2,62 +2,86 @@ package fr.adaming.dao;
 
 import java.util.List;
 
-import javax.persistence.Query;
-
 import org.apache.commons.codec.binary.Base64;
+import org.hibernate.Query;
+import org.hibernate.Session;
 import org.hibernate.SessionFactory;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Repository;
 
 import fr.adaming.model.Categorie;
 
+@Repository
 public class CategorieDaoImpl implements ICategorieDao {
 
+	@Autowired
 	private SessionFactory sf;
 
 	@Override
 	public Categorie addCategorie(Categorie cat) {
-		em.persist(cat);
+
+		// récupérer la session du formateur
+		Session s = sf.getCurrentSession();
+
+		// rendre l'objet persistant
+		s.save(cat);
+
 		return cat;
 	}
 
 	@Override
 	public int deleteCategorie(Categorie cat) {
-		String req = "DELETE Categorie c WHERE c.id=:cId";
+
+		// récupérer la session
+		Session s = sf.getCurrentSession();
+
+		String req = "DELETE FROM Categorie AS c WHERE c.id=:cId";
+
 		// recuperer un objet de type query
-		Query queryListe = em.createQuery(req);
+		Query query = s.createQuery(req);
 
-		queryListe.setParameter("cId", cat.getIdCategorie());
+		query.setParameter("cId", cat.getIdCategorie());
 
-		return queryListe.executeUpdate();
+		return query.executeUpdate();
 	}
 
 	@Override
 	public int updateCategorie(Categorie cat) {
-		String req = "UPDATE Categorie c SET c.nomCategorie = :cNomCategorie, c.description = :cDescription WHERE c.idCategorie = :cId";
+
+		// récupérer la session du formateur
+		Session s = sf.getCurrentSession();
+
+		// requete hql
+		String req = "UPDATE Categorie AS c SET c.nomCategorie = :cNomCategorie, c.description = :cDescription WHERE c.idCategorie = :cId";
+
 		// recuperer un objet de type query
-		Query queryListe = em.createQuery(req);
+		Query query = s.createQuery(req);
 
 		// passage des parametres
-		queryListe.setParameter("cNomCategorie", cat.getNomCategorie());
-		queryListe.setParameter("cDescription", cat.getDescription());
-		queryListe.setParameter("c.idCategorie", cat.getIdCategorie());
+		query.setParameter("cNomCategorie", cat.getNomCategorie());
+		query.setParameter("cDescription", cat.getDescription());
+		query.setParameter("c.idCategorie", cat.getIdCategorie());
 
-		return queryListe.executeUpdate();
+		return query.executeUpdate();
 	}
 
 	@Override
 	public List<Categorie> getAllCategorie() {
 
-		// requete JPQL
-		String req = "SELECT c FROM Categorie AS c";
+		// récupérer la session
+		Session s = sf.getCurrentSession();
+
+		// requete HQL
+		String req = "FROM Categorie";
 
 		// rï¿½cupï¿½rer l'objet query
-		Query query = em.createQuery(req);
+		Query query = s.createQuery(req);
 
-		List<Categorie> listeCat = query.getResultList();
+		List<Categorie> listeCat = query.list();
 
 		// boucle pour rÃ©cupÃ©rer les pixels de l'image
 		for (Categorie c : listeCat) {
-			c.setImg("data:image/png;base64,"+Base64.encodeBase64String(c.getPhoto()));
+			c.setImg("data:image/png;base64," + Base64.encodeBase64String(c.getPhoto()));
 		}
 
 		return listeCat;
@@ -66,16 +90,20 @@ public class CategorieDaoImpl implements ICategorieDao {
 	@Override
 	public Categorie getCategorieById(Categorie cat) {
 
+		// récupérer la session
+		Session s = sf.getCurrentSession();
+
 		// requete JPQL
-		String req = "SELECT c FROM Categorie AS c WHERE c.idCategorie =:cId";
+		String req = "FROM Categorie AS c WHERE c.idCategorie =:cId";
 
 		// rï¿½cupï¿½rer l'objet query
-		Query query = em.createQuery(req);
+		Query query = s.createQuery(req);
 
 		// passage des paramÃ¨res
 		query.setParameter("cId", cat.getIdCategorie());
-		
-		Categorie catOut = (Categorie) query.getSingleResult();
+
+		Categorie catOut = (Categorie) query.uniqueResult();
+
 		catOut.setImg("data:image/png;base64," + Base64.encodeBase64String(catOut.getPhoto()));
 
 		return catOut;

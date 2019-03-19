@@ -7,6 +7,7 @@ import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
 import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
+import javax.faces.bean.ManagedProperty;
 import javax.faces.bean.RequestScoped;
 import javax.faces.context.FacesContext;
 
@@ -19,22 +20,30 @@ import fr.adaming.service.IProduitService;
 
 @ManagedBean(name = "catMB")
 @RequestScoped
-
 public class CategorieManagedBean implements Serializable {
 
-	// DÃ©claration des attributs
+	// Déclaration des attributs
 	private Categorie cat;
-	private Categorie cat1;
-	private Categorie cat2;
-	private Categorie cat3;
-	private Categorie cat4;
+	// private Categorie cat1;
+	// private Categorie cat2;
+	// private Categorie cat3;
+	// private Categorie cat4;
 	private UploadedFile image;
 
 	// transformation de l'association UML en JAVA
-
+	@ManagedProperty(value = "#{catService}")
 	private ICategorieService catService;
-
+	@ManagedProperty(value = "#{prodService}")
 	private IProduitService prodService;
+
+	// setters pour l'injection dépendance
+	public void setCatService(ICategorieService catService) {
+		this.catService = catService;
+	}
+
+	public void setProdService(IProduitService prodService) {
+		this.prodService = prodService;
+	}
 
 	// constructeur
 	public CategorieManagedBean() {
@@ -57,7 +66,6 @@ public class CategorieManagedBean implements Serializable {
 	public void setImage(UploadedFile image) {
 		this.image = image;
 	}
-	
 
 	// DÃ©claration des mÃ©thodes mÃ©tiers
 
@@ -80,7 +88,7 @@ public class CategorieManagedBean implements Serializable {
 
 			return "accueilAdmin";
 		} else {
-			FacesContext.getCurrentInstance().addMessage(null, new FacesMessage("Echec de l'ajout de la catÃ©gorie"));
+			FacesContext.getCurrentInstance().addMessage(null, new FacesMessage("Echec de l'ajout de la catégorie"));
 
 			return "ajoutCategorie";
 		}
@@ -100,7 +108,7 @@ public class CategorieManagedBean implements Serializable {
 			return "accueilAdmin";
 		} else {
 			FacesContext.getCurrentInstance().addMessage(null,
-					new FacesMessage("Echec de la suppression de la catÃ©gorie"));
+					new FacesMessage("Echec de la suppression de la catégorie"));
 
 			return "supprCategorie";
 		}
@@ -120,13 +128,31 @@ public class CategorieManagedBean implements Serializable {
 			return "accueilAdmin";
 		} else {
 			FacesContext.getCurrentInstance().addMessage(null,
-					new FacesMessage("Echec de la modification de la catÃ©gorie"));
+					new FacesMessage("Echec de la modification de la catégorie"));
 
 			return "modifCategorie";
 
 		}
 	}
-	
-	
+
+	public String rechercherCatById() {
+
+		Categorie catVerif = catService.getCategorieById(cat);
+
+		if (catVerif != null) {
+			// rï¿½cupï¿½rer la nouvelle liste
+			List<Categorie> listeCat = catService.getAllCategorie();
+
+			// mettre la liste dans la session
+			FacesContext.getCurrentInstance().getExternalContext().getSessionMap().put("listeCatSession", listeCat);
+
+			return "rechercheCat";
+		} else {
+			FacesContext.getCurrentInstance().addMessage(null,
+					new FacesMessage("Echec de la recherche de la catégorie"));
+
+			return "rechercheCat";
+		}
+	}
 
 }
