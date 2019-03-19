@@ -70,7 +70,7 @@ public class AdministrateurManagedBean implements Serializable {
 			List<Categorie> listeCat = catService.getAllCategorie();
 			// mettre la liste dans la session
 			FacesContext.getCurrentInstance().getExternalContext().getSessionMap().put("listeCatSession", listeCat);
-
+			
 			// récupérer la liste des produits
 			List<Produit> listeProd = prodService.getAllProduits();
 			// mettre la liste dans la session
