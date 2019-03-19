@@ -17,7 +17,17 @@ public class ProduitServiceImpl implements IProduitService {
 	
 	@Autowired
 	private ICategorieDao catDao;
+	
+	
 		
+	public void setProdDao(IProduitDao prodDao) {
+		this.prodDao = prodDao;
+	}
+
+	public void setCatDao(ICategorieDao catDao) {
+		this.catDao = catDao;
+	}
+
 	@Override
 	public Produit addProduit(Produit prod, Categorie cat) {
 		//lier les objets en java
