@@ -20,4 +20,6 @@ public interface IProduitService {
 	public List<Produit> getProdByCat(Categorie cat);
 	
 	public List<Produit> getProdByIdCat(Categorie cat);
+	
+	public List<Produit> getProdByKeyWord(String keyWord);
 }

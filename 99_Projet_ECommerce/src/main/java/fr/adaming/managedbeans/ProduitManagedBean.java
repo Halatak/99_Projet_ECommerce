@@ -4,7 +4,6 @@ import java.io.Serializable;
 import java.util.List;
 
 import javax.annotation.PostConstruct;
-import javax.ejb.EJB;
 import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ManagedProperty;
@@ -17,9 +16,6 @@ import org.primefaces.model.UploadedFile;
 import fr.adaming.model.Administrateur;
 import fr.adaming.model.Categorie;
 import fr.adaming.model.Produit;
-import fr.adaming.model.SendMailSSL;
-import fr.adaming.service.AdministrateurServiceImpl;
-import fr.adaming.service.IAdministrateurService;
 import fr.adaming.service.IProduitService;
 
 @ManagedBean(name = "prodMB")
@@ -33,6 +29,7 @@ public class ProduitManagedBean implements Serializable {
 	private Administrateur admin;
 	private List<Produit> listeProdByCat;
 	private String messageMail;
+	private String keyWord;
 
 	private UploadedFile image;
 
@@ -168,25 +165,37 @@ public class ProduitManagedBean implements Serializable {
 		}
 	}
 
-	public String envoieMail() {
-
-		IAdministrateurService adminService = new AdministrateurServiceImpl();
-
-		messageMail = "Bonjour," + this.prod.getQuantite() + "exemplaire(s) de " + this.prod.getDesignation()
-				+ " ont �t� ajout� au stock. Veuillez trouvez ci-joint la fiche produit.";
-
-		int verifMail = 0;
-		SendMailSSL sm = new SendMailSSL();
-		try {
-			verifMail = sm.sendMail("cangi@laposte.net", "test");
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-		if (verifMail != 0) {
-			return "accueilAdmin";
+//	public String envoieMail() {
+//
+//		IAdministrateurService adminService = new AdministrateurServiceImpl();
+//
+//		messageMail = "Bonjour," + this.prod.getQuantite() + "exemplaire(s) de " + this.prod.getDesignation()
+//				+ " ont �t� ajout� au stock. Veuillez trouvez ci-joint la fiche produit.";
+//
+//		int verifMail = 0;
+//		SendMailSSL sm = new SendMailSSL();
+//		try {
+//			verifMail = sm.sendMail("cangi@laposte.net", "test");
+//		} catch (Exception e) {
+//			e.printStackTrace();
+//		}
+//		if (verifMail != 0) {
+//			return "accueilAdmin";
+//		} else {
+//			FacesContext.getCurrentInstance().addMessage(null, new FacesMessage("envoie �chou�"));
+//			return "accueilAdmin";
+//		}
+//	}
+	
+	public String rechercherProdByKeyWord(){
+		List<Produit> listeProdByKeyWord=prodService.getProdByKeyWord(keyWord);
+		
+		if (listeProdByKeyWord != null) {
+			return "site";
 		} else {
-			FacesContext.getCurrentInstance().addMessage(null, new FacesMessage("envoie �chou�"));
-			return "accueilAdmin";
+			FacesContext.getCurrentInstance().addMessage(null, new FacesMessage("la recherche a echoue"));
+			return "site";
 		}
+		
 	}
 }

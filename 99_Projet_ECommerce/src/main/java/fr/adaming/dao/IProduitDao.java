@@ -21,5 +21,7 @@ public interface IProduitDao {
 	
 	public List<Produit> getProdByIdCat(Categorie cat);
 	
+	public List<Produit> getProdByKeyWord(String keyWord);
+	
 	
 }

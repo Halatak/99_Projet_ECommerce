@@ -62,4 +62,10 @@ public class ProduitServiceImpl implements IProduitService {
 		return prodDao.getProdByIdCat(catFind);
 	}
 
+	@Override
+	public List<Produit> getProdByKeyWord(String keyWord) {
+		
+		return prodDao.getProdByKeyWord(keyWord);
+	}
+
 }

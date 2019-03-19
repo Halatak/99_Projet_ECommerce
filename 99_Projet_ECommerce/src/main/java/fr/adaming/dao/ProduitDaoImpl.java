@@ -134,4 +134,27 @@ public class ProduitDaoImpl implements IProduitDao {
 			
 		}
 
+	@Override
+	public List<Produit> getProdByKeyWord(String keyWord) {
+		// recuperer le bus(session de hibernate)
+		Session s=sf.getCurrentSession();
+		
+		// construire la requete jsql
+		String req="SELECT prod FROM Produit as prod WHERE prod.designation=:pDesignation";
+		//recuperer un objet de type query
+		Query query=s.createQuery(req);
+		
+		List<Produit> listeProd = getAllProduits();
+		
+		//passage des parametres
+		query.setParameter("pDesignation", listeProd.contains(keyWord));
+		
+		List<Produit> listeProdByKeyWord=query.list();
+		
+		for (Produit p:listeProdByKeyWord){
+			p.setImg("data:image/png;base64,"+Base64.encodeBase64String(p.getPhoto()));
+		}
+		return listeProdByKeyWord;
+	}
+
 }
