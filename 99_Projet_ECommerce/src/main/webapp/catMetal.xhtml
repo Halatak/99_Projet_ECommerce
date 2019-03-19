@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui">
+	
+<h:head>
+<title>Album Metal</title>
+</h:head>
+
+<h:body>
+
+
+<h:form>
+				<p:dataTable var="cat" value="#{prodMB.listeProdByCat}"
+					id="idTab1">
+					<p:column headerText="ID">
+						<h:outputText value="#{prod.idProduit}" />
+					</p:column>
+
+					<p:column headerText="Désignation produit">
+						<h:outputText value="#{prod.designation}" />
+					</p:column>
+
+					<p:column headerText="Description produit">
+						<h:outputText value="#{prod.description}" />
+					</p:column>
+
+					<p:column headerText="Photo">
+						<h:graphicImage value="#{cat.img}" />
+					</p:column>
+
+					<p:column headerText="Opérations">
+						<p:commandLink value="Supprimer"
+							action="#{catMB.supprimerCategorie}"
+							styleClass="ui-priority-primary" update="idTab1">
+							<f:setPropertyActionListener value="#{cat.idCategorie}"
+								target="#{catMB.cat.idCategorie}"></f:setPropertyActionListener>
+						</p:commandLink>
+          | 
+          <p:commandLink value="Modifier" action="modifCategorie">
+							<f:setPropertyActionListener value="#{cat}" target="#{catMB.cat}"></f:setPropertyActionListener>
+						</p:commandLink>
+					</p:column>
+
+				</p:dataTable>
+			</h:form>
+
+</h:body>
+</html>

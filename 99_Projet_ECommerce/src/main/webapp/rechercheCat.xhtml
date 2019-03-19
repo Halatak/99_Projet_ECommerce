@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui">
+	
+<h:head>
+<meta charset="ISO-8859-1">
+<title>Insert title here</title>
+</h:head>
+<h:body>
+	<h:form>
+		<p:dataTable var="prod" value="#{sessionScope.listeProdSession}"
+			id="idTab2">
+			<p:column headerText="ID produit">
+				<h:outputText value="#{prod.idProduit}" />
+			</p:column>
+
+			<p:column headerText="Désignation">
+				<h:outputText value="#{prod.designation}" />
+			</p:column>
+
+			<p:column headerText="Description">
+				<h:outputText value="#{prod.description}" />
+			</p:column>
+
+			<p:column headerText="Prix">
+				<h:outputText value="#{prod.prix}" />
+			</p:column>
+
+			<p:column headerText="Quantité">
+				<h:outputText value="#{prod.quantite}" />
+			</p:column>
+
+			<p:column headerText="Photo">
+				<h:graphicImage value="#{prod.img}" />
+			</p:column>
+
+			<p:column headerText="Catégorie associée">
+				<h:outputText value="#{prod.cat.idCategorie}" />
+			</p:column>
+
+
+			<p:column headerText="Opérations">
+				<p:commandLink value="Supprimer" action="#{prodMB.supprimerProduit}"
+					styleClass="ui-priority-primary" update="idTab2">
+					<f:setPropertyActionListener value="#{prod.idProduit}"
+						target="#{prodMB.prod.idProduit}"></f:setPropertyActionListener>
+				</p:commandLink>
+          | 
+          <p:commandLink value="Modifier" action="modifProduit">
+					<f:setPropertyActionListener value="#{prod}"
+						target="#{prodMB.prod}"></f:setPropertyActionListener>
+				</p:commandLink>
+			</p:column>
+
+		</p:dataTable>
+	</h:form>
+</h:body>
+</html>
