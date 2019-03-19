@@ -3,8 +3,6 @@ package fr.adaming.managedbeans;
 import java.io.Serializable;
 import java.util.List;
 
-import javax.annotation.PostConstruct;
-import javax.ejb.EJB;
 import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ManagedProperty;
@@ -14,7 +12,6 @@ import javax.faces.context.FacesContext;
 import org.primefaces.model.UploadedFile;
 
 import fr.adaming.model.Categorie;
-import fr.adaming.model.Produit;
 import fr.adaming.service.ICategorieService;
 import fr.adaming.service.IProduitService;
 
