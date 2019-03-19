@@ -2,6 +2,8 @@ package fr.adaming.service;
 
 import java.util.List;
 
+import org.springframework.beans.factory.annotation.Autowired;
+
 import fr.adaming.dao.ICategorieDao;
 import fr.adaming.dao.IProduitDao;
 import fr.adaming.model.Categorie;
@@ -10,10 +12,10 @@ import fr.adaming.model.Produit;
 public class ProduitServiceImpl implements IProduitService {
 
 	//transformation uml java
-
+	@Autowired
 	private IProduitDao prodDao;
 	
-
+	@Autowired
 	private ICategorieDao catDao;
 		
 	@Override
