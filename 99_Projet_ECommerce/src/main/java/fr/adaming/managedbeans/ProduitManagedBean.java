@@ -7,6 +7,7 @@ import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
 import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
+import javax.faces.bean.ManagedProperty;
 import javax.faces.bean.RequestScoped;
 import javax.faces.context.FacesContext;
 import javax.servlet.http.HttpSession;
@@ -36,7 +37,7 @@ public class ProduitManagedBean implements Serializable {
 	private UploadedFile image;
 
 	// Transformation de l'association UML en Java
-	@EJB
+	@ManagedProperty(value="prodService")
 	IProduitService prodService;
 
 	private HttpSession maSession;
