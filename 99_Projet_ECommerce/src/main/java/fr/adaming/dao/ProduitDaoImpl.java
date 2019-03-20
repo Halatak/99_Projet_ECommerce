@@ -38,11 +38,12 @@ public class ProduitDaoImpl implements IProduitDao {
 		// recuperer le bus(session de hibernate)
 		Session s=sf.getCurrentSession();
 		
-		String req="DELETE Produit p WHERE p.id=:pId";
+		String req="DELETE Produit as p WHERE p.id=:pId";
 		//recuperer un objet de type query
 		Query query=s.createQuery(req);
 		
 		query.setParameter("pId", prod.getIdProduit());
+		
 		return query.executeUpdate();
 	}
 
@@ -51,7 +52,7 @@ public class ProduitDaoImpl implements IProduitDao {
 		// recuperer le bus(session de hibernate)
 		Session s=sf.getCurrentSession();
 		
-		String req="UPDATE Produit p SET p.designation=:pDesignation, p.description=:pDescription, p.prix=:pPrix, p.quantite=:pQuantite, p.selectionne=:pSelectionne, p.photo=:pPhoto WHERE p.id=:pId";
+		String req="UPDATE Produit as p SET p.designation=:pDesignation, p.description=:pDescription, p.prix=:pPrix, p.quantite=:pQuantite, p.selectionne=:pSelectionne, p.photo=:pPhoto WHERE p.id=:pId";
 		//recuperer un objet de type query
 		Query queryListe=s.createQuery(req);
 		
@@ -80,7 +81,7 @@ public class ProduitDaoImpl implements IProduitDao {
 		Session s=sf.getCurrentSession();
 		
 		// construire la requete jsql
-		String req="SELECT prod FROM Produit as prod";
+		String req="FROM Produit";
 						
 		//recuperer un objet de type query
 		Query query=s.createQuery(req);
@@ -100,7 +101,7 @@ public class ProduitDaoImpl implements IProduitDao {
 		Session s=sf.getCurrentSession();
 		
 		// construire la requete jsql
-		String req="SELECT prod FROM Produit as prod WHERE prod.cat.id=:pIdCat";
+		String req="FROM Produit as prod WHERE prod.cat.id=:pIdCat";
 		//recuperer un objet de type query
 		Query query=s.createQuery(req);
 		
@@ -118,7 +119,7 @@ public class ProduitDaoImpl implements IProduitDao {
 		Session s=sf.getCurrentSession();
 				
 		// construire la requete jsql
-		String req="SELECT prod FROM Produit as prod WHERE prod.cat.id=:pIdCat";
+		String req="FROM Produit as prod WHERE prod.cat.id=:pIdCat";
 		//recuperer un objet de type query
 		Query query=s.createQuery(req);
 		
@@ -140,7 +141,7 @@ public class ProduitDaoImpl implements IProduitDao {
 		Session s=sf.getCurrentSession();
 		
 		// construire la requete jsql
-		String req="SELECT prod FROM Produit as prod WHERE prod.designation=:pDesignation";
+		String req="FROM Produit as prod WHERE prod.designation=:pDesignation";
 		//recuperer un objet de type query
 		Query query=s.createQuery(req);
 		

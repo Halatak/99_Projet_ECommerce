@@ -47,6 +47,10 @@ public class ProduitManagedBean implements Serializable {
 
 	}
 
+	public void setProdService(IProduitService prodService) {
+		this.prodService = prodService;
+	}
+
 	@PostConstruct // cette annotation sert a dire que la methode doit etre
 					// execut� apres l'instanciation de l'objet
 	public void init() {
