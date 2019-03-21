@@ -45,6 +45,7 @@ public class Mail {
 			message.addRecipient(Message.RecipientType.TO, new InternetAddress(to));
 			message.setSubject(sub);
 			message.setText(msg);
+			
 			// Multipart
 			Multipart multipart = new MimeMultipart();
 
