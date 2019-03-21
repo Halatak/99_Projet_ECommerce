@@ -3,6 +3,7 @@ package fr.adaming.service;
 import java.io.FileOutputStream;
 import java.io.IOException;
 
+import org.apache.commons.codec.binary.Base64;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -86,8 +87,10 @@ public class PDFService implements IPDFService {
 		tableau.addCell("Description");
 		tableau.addCell(prod.getDescription());
 		
+		Produit produit = prod;
+//		produit.setImg("data:image/png;base64,"+Base64.encodeBase64String(prod.getPhoto()));
 		tableau.addCell("Image");
-		tableau.addCell(prod.getImg());
+		tableau.addCell(produit.getImg());
 		
 		tableau.addCell("Quantité");
 		tableau.addCell(Integer.toString(prod.getQuantite()));
@@ -100,7 +103,7 @@ public class PDFService implements IPDFService {
 
 		tableau.addCell("Numéro Catégorie");
 		tableau.addCell(Integer.toString(prod.getCat().getIdCategorie()));
-
+		
 		return tableau;
 	}
 
