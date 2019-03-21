@@ -108,32 +108,36 @@ public class ProduitManagedBean implements Serializable {
 			this.prod.setPhoto(this.image.getContents());
 		}
 
-		//Création du produit
+		// Création du produit
 		Produit prodAjout = prodService.addProduit(prod, cat);
-		
+
 		if (prodAjout != null) {
-			//Actualisation de la liste des produits
+			// Actualisation de la liste des produits
 			List<Produit> listeProd = prodService.getAllProduits();
 			maSession.setAttribute("listeProdSession", listeProd);
 
-			//Création du message du mail.
+			// Création du message du mail.
 			String messageMail = "Bonjour, un produit a été ajouté : \n" + prodAjout.getDesignation() + ", quantité : "
 					+ prodAjout.getQuantite() + ", vendu au prix de : " + prodAjout.getPrix() + "€. \n"
 					+ "Cordialement, l'Administrateur.";
-			
-			//Création d'un vérificateur d'envoi de mail.
+
+			// Création d'un vérificateur d'envoi de mail.
 			int verifMail = 0;
-			
+
+			// Envoi du mail
+			SendMailSSL sm = new SendMailSSL();
+			try {
+				// Vérif va servir à savoir si le mail est envoyé vu que la
+				// fonction sendmail retourne un int
+				verifMail = sm.sendMail("cangi@laposte.net", messageMail);
+				System.out.println("Mail envoyé");
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+
 			if (verifMail != 0) {
-				SendMailSSL sm = new SendMailSSL();
-				try {
-					// Vérif va servir à savoir si le mail est envoyé vu que la fonction sendmail retourne un int
-					verifMail = sm.sendMail("cangi@laposte.net", messageMail);
-					System.out.println("Mail envoyé");
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			} 
+				System.out.println("Mail envoyé2");
+			}
 			return "accueilAdmin";
 		} else {
 			FacesContext.getCurrentInstance().addMessage(null, new FacesMessage("l'ajout a échoué"));
@@ -187,17 +191,17 @@ public class ProduitManagedBean implements Serializable {
 			switch (cat.getIdCategorie()) {
 			case 1:
 				return "catMetal";
-				
+
 			case 2:
-				
+
 				return "catRock";
-				
+
 			case 3:
-				
+
 				return "catHomme";
-				
+
 			case 4:
-				
+
 				return "catFemme";
 
 			default:
