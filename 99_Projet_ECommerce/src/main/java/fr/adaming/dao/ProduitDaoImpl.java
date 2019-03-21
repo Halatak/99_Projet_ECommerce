@@ -77,6 +77,7 @@ public class ProduitDaoImpl implements IProduitDao {
 
 	@Override
 	public List<Produit> getAllProduits() {
+		
 		// recuperer le bus(session de hibernate)
 		Session s=sf.getCurrentSession();
 		
