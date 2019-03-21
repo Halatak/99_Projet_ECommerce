@@ -12,6 +12,8 @@
 
 <h:body>
 
+<h:outputStylesheet library="css" name="catMetal.css" />
+
 	<p:layout style="min-width:400px;min-height:200px; height: 730px">
 		<p:layoutUnit styleClass="fontNoir" position="west" resizable="false"
 			size="200">
@@ -69,19 +71,6 @@
 
 					<p:column headerText="Photo">
 						<h:graphicImage value="#{liste.img}" />
-					</p:column>
-
-					<p:column headerText="Opérations">
-						<p:commandLink value="Supprimer"
-							action="#{catMB.supprimerCategorie}"
-							styleClass="ui-priority-primary" update="idTab1">
-							<f:setPropertyActionListener value="#{cat.idCategorie}"
-								target="#{catMB.cat.idCategorie}"></f:setPropertyActionListener>
-						</p:commandLink>
-          | 
-          <p:commandLink value="Modifier" action="modifCategorie">
-							<f:setPropertyActionListener value="#{cat}" target="#{catMB.cat}"></f:setPropertyActionListener>
-						</p:commandLink>
 					</p:column>
 
 				</p:dataTable>

@@ -20,27 +20,31 @@
 			<h:form>
 				<p:menu toggleable="true" style="background-color: black">
 					<p:submenu label="Musique" style="background-color: red">
-					
+
 						<p:menuitem value="Metal" action="#{prodMB.rechercherProdByIdCat}"
 							icon="fa fa-volume-up" style="color: red">
-							<f:setPropertyActionListener value="1" target="#{prodMB.cat.idCategorie}" />
+							<f:setPropertyActionListener value="1"
+								target="#{prodMB.cat.idCategorie}" />
 						</p:menuitem>
-						
-						<p:menuitem value="Rock" action="#{prodMB.rechercherProdByIdCat}" icon="fa fa-music"
-							style="color: red">
-							<f:setPropertyActionListener value="2" target="#{prodMB.cat.idCategorie}" />
+
+						<p:menuitem value="Rock" action="#{prodMB.rechercherProdByIdCat}"
+							icon="fa fa-music" style="color: red">
+							<f:setPropertyActionListener value="2"
+								target="#{prodMB.cat.idCategorie}" />
 						</p:menuitem>
 					</p:submenu>
-					
+
 					<p:submenu label="Tee-Shirt" style="background-color: red">
 						<p:menuitem value="Homme" action="#{prodMB.rechercherProdByIdCat}"
 							icon="fa fa-th-list" style="color: red">
-							<f:setPropertyActionListener value="3" target="#{prodMB.cat.idCategorie}" />
+							<f:setPropertyActionListener value="3"
+								target="#{prodMB.cat.idCategorie}" />
 						</p:menuitem>
-						
-						<p:menuitem value="Femme" action="#{prodMB.rechercherProdByIdCat}" icon="fa fa-plus"
-							style="color: red">
-							<f:setPropertyActionListener value="4" target="#{prodMB.cat.idCategorie}" />
+
+						<p:menuitem value="Femme" action="#{prodMB.rechercherProdByIdCat}"
+							icon="fa fa-plus" style="color: red">
+							<f:setPropertyActionListener value="4"
+								target="#{prodMB.cat.idCategorie}" />
 						</p:menuitem>
 					</p:submenu>
 				</p:menu>
@@ -69,6 +73,13 @@
 				<p style="font-size: 8px;">* abonnement payant 80€/mois,
 					engagement 100 ans, non résiliable.</p>
 			</div>
+
+
+
+
+
+
+			
 		</p:layoutUnit>
 	</p:layout>
 

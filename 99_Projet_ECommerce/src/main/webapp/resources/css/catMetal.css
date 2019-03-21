@@ -1,6 +1,9 @@
 @CHARSET "ISO-8859-1";
 
-#corps {
-	background-image:
-		url("../resources/pictures/fond-ecran_tablette_09.png");
+.fontNoir .ui-layout-unit-content {
+	background-color: black;
+}
+
+#corps{
+	background-color: black;
 }
