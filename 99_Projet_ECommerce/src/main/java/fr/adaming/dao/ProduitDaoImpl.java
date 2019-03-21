@@ -18,27 +18,26 @@ public class ProduitDaoImpl implements IProduitDao {
 
 	@Autowired
 	private SessionFactory sf;
-	
-	
-	public void setSf(SessionFactory sf) {
-		this.sf = sf;
-	}
 
 	@Override
 	public Produit addProduit(Produit prod) {
+		
 		// recuperer le bus(session de hibernate)
 		Session s=sf.getCurrentSession();
 		
+		// rendre l'objet persistant
 		s.save(prod);
+		
 		return prod;
 	}
 
 	@Override
 	public int deleteProduit(Produit prod) {
+		
 		// recuperer le bus(session de hibernate)
 		Session s=sf.getCurrentSession();
 		
-		String req="DELETE Produit as p WHERE p.id=:pId";
+		String req="DELETE FROM Produit as p WHERE p.id=:pId";
 		//recuperer un objet de type query
 		Query query=s.createQuery(req);
 		
@@ -49,6 +48,7 @@ public class ProduitDaoImpl implements IProduitDao {
 
 	@Override
 	public int updateProduit(Produit prod) {
+		
 		// recuperer le bus(session de hibernate)
 		Session s=sf.getCurrentSession();
 		
@@ -98,11 +98,13 @@ public class ProduitDaoImpl implements IProduitDao {
 
 	@Override
 	public List<Produit> getProdByCat(Categorie cat) {
+		
 		// recuperer le bus(session de hibernate)
 		Session s=sf.getCurrentSession();
 		
 		// construire la requete jsql
 		String req="FROM Produit as prod WHERE prod.cat.id=:pIdCat";
+		
 		//recuperer un objet de type query
 		Query query=s.createQuery(req);
 		
