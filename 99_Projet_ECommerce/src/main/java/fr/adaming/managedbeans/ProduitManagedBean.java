@@ -100,6 +100,8 @@ public class ProduitManagedBean implements Serializable {
 		this.messageMail = messageMail;
 	}
 
+	
+	
 	// M�thodes m�tier
 	public String ajouterProduit() {
 

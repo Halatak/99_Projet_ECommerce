@@ -10,6 +10,7 @@ import fr.adaming.dao.ICategorieDao;
 import fr.adaming.dao.IProduitDao;
 import fr.adaming.model.Categorie;
 import fr.adaming.model.Produit;
+
 @Service("prodService")
 @Transactional
 public class ProduitServiceImpl implements IProduitService {
