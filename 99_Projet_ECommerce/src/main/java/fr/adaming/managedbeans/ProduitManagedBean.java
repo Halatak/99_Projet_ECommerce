@@ -184,7 +184,25 @@ public class ProduitManagedBean implements Serializable {
 	public String rechercherProdByIdCat() {
 		List<Produit> listeProdByCat = prodService.getProdByIdCat(cat);
 		if (listeProdByCat != null) {
-			return "site";
+			switch (cat.getIdCategorie()) {
+			case 1:
+				return "catMetal";
+				
+			case 2:
+				
+				return "catRock";
+				
+			case 3:
+				
+				return "catHomme";
+				
+			case 4:
+				
+				return "catFemme";
+
+			default:
+				return "site";
+			}
 		} else {
 			FacesContext.getCurrentInstance().addMessage(null, new FacesMessage("la recherche a echoue"));
 			return "site";
