@@ -5,47 +5,49 @@
 	xmlns:h="http://java.sun.com/jsf/html"
 	xmlns:f="http://java.sun.com/jsf/core"
 	xmlns:p="http://primefaces.org/ui">
-	
+
 <h:head>
-<title>Album Metal</title>
+	<title>Album Metal</title>
 </h:head>
 
 <h:body>
 je suis dans la catMetal
 <h:form>
-				<p:dataTable var="cat" value="#{prodMB.listeProdByCat}"
-					id="idTab1">
-					<p:column headerText="ID">
-						<h:outputText value="#{prod.idProduit}" />
-					</p:column>
 
-					<p:column headerText="Désignation produit">
-						<h:outputText value="#{prod.designation}" />
-					</p:column>
+		<p:dataTable var="liste" value="#{prodMB.}" id="idTab1">
+			<p:column headerText="ID">
+				<h:outputText value="#{liste.idProduit}" />
+			</p:column>
 
-					<p:column headerText="Description produit">
-						<h:outputText value="#{prod.description}" />
-					</p:column>
+			<p:column headerText="Désignation produit">
+				<h:outputText value="#{liste.designation}" />
+			</p:column>
 
-					<p:column headerText="Photo">
-						<h:graphicImage value="#{cat.img}" />
-					</p:column>
+			<p:column headerText="Description produit">
+				<h:outputText value="#{liste.description}" />
+			</p:column>
 
-					<p:column headerText="Opérations">
-						<p:commandLink value="Supprimer"
-							action="#{catMB.supprimerCategorie}"
-							styleClass="ui-priority-primary" update="idTab1">
-							<f:setPropertyActionListener value="#{cat.idCategorie}"
-								target="#{catMB.cat.idCategorie}"></f:setPropertyActionListener>
-						</p:commandLink>
+			<p:column headerText="Photo">
+				<h:graphicImage value="#{liste.img}" />
+			</p:column>
+
+			<p:column headerText="Opérations">
+				<p:commandLink value="Supprimer"
+					action="#{catMB.supprimerCategorie}"
+					styleClass="ui-priority-primary" update="idTab1">
+					<f:setPropertyActionListener value="#{cat.idCategorie}"
+						target="#{catMB.cat.idCategorie}"></f:setPropertyActionListener>
+				</p:commandLink>
           | 
           <p:commandLink value="Modifier" action="modifCategorie">
-							<f:setPropertyActionListener value="#{cat}" target="#{catMB.cat}"></f:setPropertyActionListener>
-						</p:commandLink>
-					</p:column>
+					<f:setPropertyActionListener value="#{cat}" target="#{catMB.cat}"></f:setPropertyActionListener>
+				</p:commandLink>
+			</p:column>
 
-				</p:dataTable>
-			</h:form>
+		</p:dataTable>
+
+		
+	</h:form>
 
 </h:body>
 </html>
