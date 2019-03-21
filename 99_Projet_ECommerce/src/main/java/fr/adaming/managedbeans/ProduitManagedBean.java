@@ -119,6 +119,7 @@ public class ProduitManagedBean implements Serializable {
 			// Création du message du mail.
 			String messageMail = "Bonjour, un produit a été ajouté : \n" + prodAjout.getDesignation() + ", quantité : "
 					+ prodAjout.getQuantite() + ", vendu au prix de : " + prodAjout.getPrix() + "€. \n"
+					+ "Vous trouverez ci joint le descriptif du produit en pdf.\n"
 					+ "Cordialement, l'Administrateur.";
 
 			// Création d'un vérificateur d'envoi de mail.
