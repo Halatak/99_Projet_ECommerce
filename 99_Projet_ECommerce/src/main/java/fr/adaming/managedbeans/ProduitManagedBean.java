@@ -129,13 +129,14 @@ public class ProduitManagedBean implements Serializable {
 				try {
 					// Vérif va servir à savoir si le mail est envoyé vu que la fonction sendmail retourne un int
 					verifMail = sm.sendMail("cangi@laposte.net", messageMail);
+					System.out.println("Mail envoyé");
 				} catch (Exception e) {
 					e.printStackTrace();
 				}
 			} 
 			return "accueilAdmin";
 		} else {
-			FacesContext.getCurrentInstance().addMessage(null, new FacesMessage("l'ajout a ï¿½chouï¿½"));
+			FacesContext.getCurrentInstance().addMessage(null, new FacesMessage("l'ajout a échoué"));
 			return "ajoutProduit";
 		}
 
