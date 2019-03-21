@@ -248,11 +248,11 @@ public class ProduitManagedBean implements Serializable {
 
 			case 3:
 				listeHomme= prodService.getProdByIdCat(cat);
-				return "catHomme";
+				return "catHommes";
 
 			case 4:
 				listeFemme= prodService.getProdByIdCat(cat);
-				return "catFemme";
+				return "catFemmes";
 
 			default:
 				return "site";
