@@ -34,6 +34,7 @@ public class ProduitManagedBean implements Serializable {
 	private List<Produit> listeRock;
 	private List<Produit> listeHomme;
 	private List<Produit> listeFemme;
+	private List<Produit> listeProduit;
 	private String messageMail;
 	private String keyWord;
 
@@ -69,6 +70,7 @@ public class ProduitManagedBean implements Serializable {
 	public void init() {
 		maSession = (HttpSession) FacesContext.getCurrentInstance().getExternalContext().getSession(false);
 		this.admin = (Administrateur) maSession.getAttribute("adminSession");
+		listeProduit=prodService.getAllProduits();
 	}
 
 	// Getters & setters
@@ -144,6 +146,15 @@ public class ProduitManagedBean implements Serializable {
 
 	public void setListeFemme(List<Produit> listeFemme) {
 		this.listeFemme = listeFemme;
+	}
+
+	
+	public List<Produit> getListeProduit() {
+		return listeProduit;
+	}
+
+	public void setListeProduit(List<Produit> listeProduit) {
+		this.listeProduit = listeProduit;
 	}
 
 	// M�thodes m�tier
