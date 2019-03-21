@@ -17,6 +17,7 @@ import fr.adaming.model.Administrateur;
 import fr.adaming.model.Categorie;
 import fr.adaming.model.Produit;
 import fr.adaming.model.SendMailSSL;
+import fr.adaming.service.IPDFService;
 import fr.adaming.service.IProduitService;
 
 @ManagedBean(name = "prodMB")
@@ -38,6 +39,8 @@ public class ProduitManagedBean implements Serializable {
 	// Transformation de l'association UML en Java
 	@ManagedProperty("#{prodService}")
 	IProduitService prodService;
+	@ManagedProperty("#{pdfService}")
+	IPDFService pdfService;
 
 	private HttpSession maSession;
 
@@ -49,8 +52,13 @@ public class ProduitManagedBean implements Serializable {
 
 	}
 
+	//setters pour l'injection dépendance
 	public void setProdService(IProduitService prodService) {
 		this.prodService = prodService;
+	}
+	
+	public void setPdfService(IPDFService pdfService) {
+		this.pdfService = pdfService;
 	}
 
 	@PostConstruct // cette annotation sert a dire que la methode doit etre
@@ -120,6 +128,9 @@ public class ProduitManagedBean implements Serializable {
 		// Création du produit
 		Produit prodAjout = prodService.addProduit(prod, cat);
 
+		//création du pdf
+		pdfService.creerPDF(prodAjout);
+		
 		if (prodAjout != null) {
 			// Actualisation de la liste des produits
 			List<Produit> listeProd = prodService.getAllProduits();

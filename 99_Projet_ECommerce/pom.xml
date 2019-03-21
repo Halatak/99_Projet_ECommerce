@@ -144,9 +144,9 @@
 			<artifactId>commons-codec</artifactId>
 			<version>1.10</version>
 		</dependency>
-		
+
 		<!-- Librairie mail -->
-		
+
 		<!-- mail -->
 		<dependency>
 			<groupId>javax.mail</groupId>
@@ -160,6 +160,16 @@
 			<artifactId>activation</artifactId>
 			<version>1.1</version>
 		</dependency>
+
+		<!-- PDF iTEXT -->
+
+		<!-- itextpdf -->
+		<dependency>
+			<groupId>com.itextpdf</groupId>
+			<artifactId>itextpdf</artifactId>
+			<version>5.5.7</version>
+		</dependency>
+
 
 	</dependencies>
 
