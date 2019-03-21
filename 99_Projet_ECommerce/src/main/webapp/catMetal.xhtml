@@ -28,11 +28,10 @@
 <body>
 
 	<h:form id="form">
-		<p:repeat value="#{prodMB.listeProduit}" var="prod">
+		<p:repeat value="#{prodMB.listeMetal}" var="prod">
 			<h:panelGrid columns="2" style="width:100%"
 				columnClasses="logo,detail">
-				<p:commandLink update=":form:carDetail"
-					oncomplete="PF('carDialog').show()">
+				<p:commandLink>
 					<f:setPropertyActionListener value="#{prod}"
 						target="#{prodMB.prod}" />
 					<h:graphicImage value="#{prod.img}" />
@@ -48,41 +47,22 @@
 						<h:outputText value="#{prod.designation}"
 							style="font-weight: bold" />
 
+						<h:outputText value="Description:" />
+						<h:outputText value="#{prod.description}" style="font-weight: bold" />
+						
 						<h:outputText value="Prix:" />
 						<h:outputText value="#{prod.prix}" style="font-weight: bold" />
 
 						<h:outputText value="Quantité:" />
 						<h:outputText value="#{prod.quantite}" style="font-weight: bold" />
+
+
+
 					</h:panelGrid>
 				</p:outputPanel>
 			</h:panelGrid>
 			<hr />
 		</p:repeat>
-
-
-		<p:dialog header="Car Info" widgetVar="carDialog" modal="true"
-			showEffect="blind" hideEffect="explode" resizable="false">
-			<p:outputPanel id="carDetail" style="text-align:center;">
-				<p:panelGrid columns="2" rendered="#{not empty prodMB.prod}"
-					columnClasses="label,value">
-					<f:facet name="header">
-						<h:graphicImage value="#{prod.img}" />
-					</f:facet>
-
-					<h:outputText value="Designation:" />
-					<h:outputText value="#{prodMB.prod.designation}" />
-
-					<h:outputText value="Description" />
-					<h:outputText value="#{prodMB.prod.description}" />
-
-					<h:outputText value="Prix" />
-					<h:outputText value="#{prodMB.prod.prix}" />
-
-					<h:outputText value="Quantité" />
-					<h:outputText value="#{prodMB.prod.quantite}" />
-				</p:panelGrid>
-			</p:outputPanel>
-		</p:dialog>
 
 
 	</h:form>
