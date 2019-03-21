@@ -10,11 +10,10 @@
 	<title>Album Metal</title>
 </h:head>
 
-<h:body>
-je suis dans la catMetal
+<h:body id="corps">
 <h:form>
 
-		<p:dataTable var="liste" value="#{prodMB.}" id="idTab1">
+		<p:dataTable var="liste" value="#{prodMB.listeMetal}" id="idTab1">
 			<p:column headerText="ID">
 				<h:outputText value="#{liste.idProduit}" />
 			</p:column>

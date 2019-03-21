@@ -31,6 +31,9 @@ public class ProduitManagedBean implements Serializable {
 	private Administrateur admin;
 	private List<Produit> listeProdByCat;
 	private List<Produit> listeMetal;
+	private List<Produit> listeRock;
+	private List<Produit> listeHomme;
+	private List<Produit> listeFemme;
 	private String messageMail;
 	private String keyWord;
 
@@ -116,6 +119,31 @@ public class ProduitManagedBean implements Serializable {
 
 	public void setListeMetal(List<Produit> listeMetal) {
 		this.listeMetal = listeMetal;
+	}
+
+	
+	public List<Produit> getListeRock() {
+		return listeRock;
+	}
+
+	public void setListeRock(List<Produit> listeRock) {
+		this.listeRock = listeRock;
+	}
+
+	public List<Produit> getListeHomme() {
+		return listeHomme;
+	}
+
+	public void setListeHomme(List<Produit> listeHomme) {
+		this.listeHomme = listeHomme;
+	}
+
+	public List<Produit> getListeFemme() {
+		return listeFemme;
+	}
+
+	public void setListeFemme(List<Produit> listeFemme) {
+		this.listeFemme = listeFemme;
 	}
 
 	// M�thodes m�tier
@@ -215,15 +243,15 @@ public class ProduitManagedBean implements Serializable {
 				return "catMetal";
 
 			case 2:
-				
+				listeRock= prodService.getProdByIdCat(cat);
 				return "catRock";
 
 			case 3:
-			
+				listeHomme= prodService.getProdByIdCat(cat);
 				return "catHomme";
 
 			case 4:
-				
+				listeFemme= prodService.getProdByIdCat(cat);
 				return "catFemme";
 
 			default:
