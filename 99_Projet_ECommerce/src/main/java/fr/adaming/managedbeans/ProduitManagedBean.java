@@ -34,7 +34,7 @@ public class ProduitManagedBean implements Serializable {
 	private UploadedFile image;
 
 	// Transformation de l'association UML en Java
-	@ManagedProperty(value="prodService")
+	@ManagedProperty("#{prodService}")
 	IProduitService prodService;
 
 	private HttpSession maSession;
