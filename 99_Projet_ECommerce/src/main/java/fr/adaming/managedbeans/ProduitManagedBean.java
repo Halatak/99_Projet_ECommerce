@@ -16,6 +16,7 @@ import org.primefaces.model.UploadedFile;
 import fr.adaming.model.Administrateur;
 import fr.adaming.model.Categorie;
 import fr.adaming.model.Produit;
+import fr.adaming.model.SendMailSSL;
 import fr.adaming.service.IProduitService;
 
 @ManagedBean(name = "prodMB")
@@ -23,7 +24,7 @@ import fr.adaming.service.IProduitService;
 
 public class ProduitManagedBean implements Serializable {
 
-	// Dï¿½claration des attributs
+	// Déclaration des attributs
 	private Produit prod;
 	private Categorie cat;
 	private Administrateur admin;
@@ -100,8 +101,6 @@ public class ProduitManagedBean implements Serializable {
 		this.messageMail = messageMail;
 	}
 
-	
-	
 	// Mï¿½thodes mï¿½tier
 	public String ajouterProduit() {
 
@@ -109,11 +108,31 @@ public class ProduitManagedBean implements Serializable {
 			this.prod.setPhoto(this.image.getContents());
 		}
 
+		//Création du produit
 		Produit prodAjout = prodService.addProduit(prod, cat);
+		
 		if (prodAjout != null) {
+			//Actualisation de la liste des produits
 			List<Produit> listeProd = prodService.getAllProduits();
 			maSession.setAttribute("listeProdSession", listeProd);
 
+			//Création du message du mail.
+			String messageMail = "Bonjour, un produit a été ajouté : \n" + prodAjout.getDesignation() + ", quantité : "
+					+ prodAjout.getQuantite() + ", vendu au prix de : " + prodAjout.getPrix() + "€. \n"
+					+ "Cordialement, l'Administrateur.";
+			
+			//Création d'un vérificateur d'envoi de mail.
+			int verifMail = 0;
+			
+			if (verifMail != 0) {
+				SendMailSSL sm = new SendMailSSL();
+				try {
+					// Vérif va servir à savoir si le mail est envoyé vu que la fonction sendmail retourne un int
+					verifMail = sm.sendMail("cangi@laposte.net", messageMail);
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
+			} 
 			return "accueilAdmin";
 		} else {
 			FacesContext.getCurrentInstance().addMessage(null, new FacesMessage("l'ajout a ï¿½chouï¿½"));
@@ -171,37 +190,40 @@ public class ProduitManagedBean implements Serializable {
 		}
 	}
 
-//	public String envoieMail() {
-//
-//		IAdministrateurService adminService = new AdministrateurServiceImpl();
-//
-//		messageMail = "Bonjour," + this.prod.getQuantite() + "exemplaire(s) de " + this.prod.getDesignation()
-//				+ " ont ï¿½tï¿½ ajoutï¿½ au stock. Veuillez trouvez ci-joint la fiche produit.";
-//
-//		int verifMail = 0;
-//		SendMailSSL sm = new SendMailSSL();
-//		try {
-//			verifMail = sm.sendMail("cangi@laposte.net", "test");
-//		} catch (Exception e) {
-//			e.printStackTrace();
-//		}
-//		if (verifMail != 0) {
-//			return "accueilAdmin";
-//		} else {
-//			FacesContext.getCurrentInstance().addMessage(null, new FacesMessage("envoie ï¿½chouï¿½"));
-//			return "accueilAdmin";
-//		}
-//	}
-	
-	public String rechercherProdByKeyWord(){
-		List<Produit> listeProdByKeyWord=prodService.getProdByKeyWord(keyWord);
-		
+	// public String envoieMail() {
+	//
+	// IAdministrateurService adminService = new AdministrateurServiceImpl();
+	//
+	// messageMail = "Bonjour," + this.prod.getQuantite() + "exemplaire(s) de "
+	// + this.prod.getDesignation()
+	// + " ont ï¿½tï¿½ ajoutï¿½ au stock. Veuillez trouvez ci-joint la fiche
+	// produit.";
+	//
+	// int verifMail = 0;
+	// SendMailSSL sm = new SendMailSSL();
+	// try {
+	// verifMail = sm.sendMail("cangi@laposte.net", "test");
+	// } catch (Exception e) {
+	// e.printStackTrace();
+	// }
+	// if (verifMail != 0) {
+	// return "accueilAdmin";
+	// } else {
+	// FacesContext.getCurrentInstance().addMessage(null, new
+	// FacesMessage("envoie ï¿½chouï¿½"));
+	// return "accueilAdmin";
+	// }
+	// }
+
+	public String rechercherProdByKeyWord() {
+		List<Produit> listeProdByKeyWord = prodService.getProdByKeyWord(keyWord);
+
 		if (listeProdByKeyWord != null) {
 			return "site";
 		} else {
 			FacesContext.getCurrentInstance().addMessage(null, new FacesMessage("la recherche a echoue"));
 			return "site";
 		}
-		
+
 	}
 }
