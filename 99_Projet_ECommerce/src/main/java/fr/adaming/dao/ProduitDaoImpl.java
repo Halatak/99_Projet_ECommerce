@@ -18,6 +18,9 @@ public class ProduitDaoImpl implements IProduitDao {
 
 	@Autowired
 	private SessionFactory sf;
+	
+	
+	private Categorie cat;
 
 	
 	public void setSf(SessionFactory sf) {
