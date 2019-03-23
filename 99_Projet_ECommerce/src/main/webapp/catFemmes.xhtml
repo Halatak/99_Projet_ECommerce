@@ -12,73 +12,77 @@
 
 <h:body>
 
-<h:outputStylesheet library="css" name="catMetal.css" />
+	<h:form id="form">
 
-	<p:layout style="min-width:400px;min-height:200px; height: 730px">
-		<p:layoutUnit styleClass="fontNoir" position="west" resizable="false"
-			size="200">
-			<h:form>
-				<p:menu toggleable="true" style="background-color: black">
-					<p:submenu label="Musique" style="background-color: red">
+		<p:menu toggleable="true" style="background-color: black">
+			<p:submenu label="Musique" style="background-color: red">
 
-						<p:menuitem value="Metal" action="#{prodMB.rechercherProdByIdCat}"
-							icon="fa fa-volume-up" style="color: red">
-							<f:setPropertyActionListener value="1"
-								target="#{prodMB.cat.idCategorie}" />
-						</p:menuitem>
+				<p:menuitem value="Metal" action="#{prodMB.rechercherProdByIdCat}"
+					icon="fa fa-volume-up" style="color: red">
+					<f:setPropertyActionListener value="1"
+						target="#{prodMB.cat.idCategorie}" />
+				</p:menuitem>
 
-						<p:menuitem value="Rock" action="#{prodMB.rechercherProdByIdCat}"
-							icon="fa fa-music" style="color: red">
-							<f:setPropertyActionListener value="2"
-								target="#{prodMB.cat.idCategorie}" />
-						</p:menuitem>
-					</p:submenu>
+				<p:menuitem value="Rock" action="#{prodMB.rechercherProdByIdCat}"
+					icon="fa fa-music" style="color: red">
+					<f:setPropertyActionListener value="2"
+						target="#{prodMB.cat.idCategorie}" />
+				</p:menuitem>
+			</p:submenu>
 
-					<p:submenu label="Tee-Shirt" style="background-color: red">
-						<p:menuitem value="Homme" action="#{prodMB.rechercherProdByIdCat}"
-							icon="fa fa-th-list" style="color: red">
-							<f:setPropertyActionListener value="3"
-								target="#{prodMB.cat.idCategorie}" />
-						</p:menuitem>
+			<p:submenu label="Tee-Shirt" style="background-color: red">
+				<p:menuitem value="Homme" action="#{prodMB.rechercherProdByIdCat}"
+					icon="fa fa-th-list" style="color: red">
+					<f:setPropertyActionListener value="3"
+						target="#{prodMB.cat.idCategorie}" />
+				</p:menuitem>
 
-						<p:menuitem value="Femme" action="#{prodMB.rechercherProdByIdCat}"
-							icon="fa fa-plus" style="color: red">
-							<f:setPropertyActionListener value="4"
-								target="#{prodMB.cat.idCategorie}" />
-						</p:menuitem>
-					</p:submenu>
-				</p:menu>
-			</h:form>
+				<p:menuitem value="Femme" action="#{prodMB.rechercherProdByIdCat}"
+					icon="fa fa-plus" style="color: red">
+					<f:setPropertyActionListener value="4"
+						target="#{prodMB.cat.idCategorie}" />
+				</p:menuitem>
+			</p:submenu>
+		</p:menu>
 
-		</p:layoutUnit>
-		<p:layoutUnit styleClass="fontNoir" position="center">
-
-			<h:form>
-
-				<p:dataTable var="liste" value="#{prodMB.listeFemme}" id="idTab1">
-					<p:column headerText="ID">
-						<h:outputText value="#{liste.idProduit}" />
-					</p:column>
-
-					<p:column headerText="Désignation produit">
-						<h:outputText value="#{liste.designation}" />
-					</p:column>
-
-					<p:column headerText="Description produit">
-						<h:outputText value="#{liste.description}" />
-					</p:column>
-
-					<p:column headerText="Photo">
-						<h:graphicImage value="#{liste.img}" />
-					</p:column>
-
-				</p:dataTable>
+		<p:repeat id="liste" value="#{prodMB.listeFemme}" var="prod">
+			<h:panelGrid columns="2" style="width:100%"
+				columnClasses="logo,detail">
+				<p:commandLink>
+					<f:setPropertyActionListener value="#{prod}"
+						target="#{prodMB.prod}" />
+					<h:graphicImage value="#{prod.img}" />
 
 
-			</h:form>
+				</p:commandLink>
 
-		</p:layoutUnit>
+				<p:outputPanel>
+					<h:panelGrid columns="2" cellpadding="5">
+						<h:outputText value="Designation:">
 
-	</p:layout>
+						</h:outputText>
+						<h:outputText value="#{prod.designation}"
+							style="font-weight: bold" />
+
+						<h:outputText value="Description:" />
+						<h:outputText value="#{prod.description}"
+							style="font-weight: bold" />
+
+						<h:outputText value="Prix:" />
+						<h:outputText value="#{prod.prix}" style="font-weight: bold" />
+
+						<h:outputText value="Quantité:" />
+						<h:outputText value="#{prod.quantite}" style="font-weight: bold" />
+
+
+
+					</h:panelGrid>
+				</p:outputPanel>
+			</h:panelGrid>
+			<hr />
+		</p:repeat>
+
+
+	</h:form>
 </h:body>
 </html>
