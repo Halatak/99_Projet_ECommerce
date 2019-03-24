@@ -21,4 +21,11 @@ public class Panier {
 		this.listeLc = listeLc;
 	}
 
+	@Override
+	public String toString() {
+		return "Panier [listeLc=" + listeLc + "]";
+	}
+	
+	
+
 }
