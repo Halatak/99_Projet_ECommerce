@@ -11,7 +11,7 @@ public class SendMailSSL {
 	public int sendMail(String destinataire, String message) throws Exception {
 		// Ton mail, le mdp de ton mail, le destinataire, le sujet, et l'objet
 		int a = 0;
-		Mail.send("ozzy.osborn1948@gmail.com", "ozzy1948", destinataire, "Résumé de votre commande",
+		Mail.send("ozzy.osborn1948@gmail.com", "ozzy1948", destinataire, "Ajout d'un nouveau produit, Mon P'tit Cedric",
 				message);
 		// Message et destinataire sont des variables afin d'envoyer le mail à la bonne personne pour "destinataire", et de personnaliser
 		//le message avec "message" selon la personne. 
